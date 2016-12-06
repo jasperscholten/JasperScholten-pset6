@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		75FE5A197DE75F6D573922A1 /* Pods_JasperScholten_pset6.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A859F4F4566B5678BEF52FC0 /* Pods_JasperScholten_pset6.framework */; };
+		A44FBD1A1DF6E4B60019BACF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A44FBD191DF6E4B60019BACF /* GoogleService-Info.plist */; };
+		A46EF6901DF6F6BB00A90453 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46EF68F1DF6F6BB00A90453 /* LoginViewController.swift */; };
+		A46EF6921DF6FA2B00A90453 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46EF6911DF6FA2B00A90453 /* MapViewController.swift */; };
+		A46EF6941DF6FAD900A90453 /* MonumentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46EF6931DF6FAD900A90453 /* MonumentListViewController.swift */; };
+		A46EF6961DF6FB0400A90453 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46EF6951DF6FB0400A90453 /* FavoritesViewController.swift */; };
 		A4EDAD3C1DF6DC6800694948 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EDAD3B1DF6DC6800694948 /* AppDelegate.swift */; };
 		A4EDAD3E1DF6DC6800694948 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EDAD3D1DF6DC6800694948 /* ViewController.swift */; };
 		A4EDAD411DF6DC6800694948 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4EDAD3F1DF6DC6800694948 /* Main.storyboard */; };
@@ -15,6 +21,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5C25664F703BD9284322BA37 /* Pods-JasperScholten-pset6.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JasperScholten-pset6.release.xcconfig"; path = "Pods/Target Support Files/Pods-JasperScholten-pset6/Pods-JasperScholten-pset6.release.xcconfig"; sourceTree = "<group>"; };
+		A44FBD191DF6E4B60019BACF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A46EF68C1DF6F1F900A90453 /* JasperScholten-pset6.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "JasperScholten-pset6.entitlements"; sourceTree = "<group>"; };
+		A46EF68F1DF6F6BB00A90453 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		A46EF6911DF6FA2B00A90453 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		A46EF6931DF6FAD900A90453 /* MonumentListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonumentListViewController.swift; sourceTree = "<group>"; };
+		A46EF6951DF6FB0400A90453 /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		A4EDAD381DF6DC6800694948 /* JasperScholten-pset6.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JasperScholten-pset6.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4EDAD3B1DF6DC6800694948 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4EDAD3D1DF6DC6800694948 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +35,8 @@
 		A4EDAD421DF6DC6800694948 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A4EDAD451DF6DC6800694948 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A4EDAD471DF6DC6800694948 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A859F4F4566B5678BEF52FC0 /* Pods_JasperScholten_pset6.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JasperScholten_pset6.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9E95F211ECAD8519367B192 /* Pods-JasperScholten-pset6.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JasperScholten-pset6.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JasperScholten-pset6/Pods-JasperScholten-pset6.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +44,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75FE5A197DE75F6D573922A1 /* Pods_JasperScholten_pset6.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6A49496553D56985B7A3B121 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E9E95F211ECAD8519367B192 /* Pods-JasperScholten-pset6.debug.xcconfig */,
+				5C25664F703BD9284322BA37 /* Pods-JasperScholten-pset6.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A4EDAD2F1DF6DC6800694948 = {
 			isa = PBXGroup;
 			children = (
 				A4EDAD3A1DF6DC6800694948 /* JasperScholten-pset6 */,
 				A4EDAD391DF6DC6800694948 /* Products */,
+				6A49496553D56985B7A3B121 /* Pods */,
+				A8139BA32DE6F0C3E4985AC9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +81,28 @@
 		A4EDAD3A1DF6DC6800694948 /* JasperScholten-pset6 */ = {
 			isa = PBXGroup;
 			children = (
+				A46EF68C1DF6F1F900A90453 /* JasperScholten-pset6.entitlements */,
+				A46EF68F1DF6F6BB00A90453 /* LoginViewController.swift */,
+				A46EF6911DF6FA2B00A90453 /* MapViewController.swift */,
+				A46EF6931DF6FAD900A90453 /* MonumentListViewController.swift */,
+				A46EF6951DF6FB0400A90453 /* FavoritesViewController.swift */,
 				A4EDAD3B1DF6DC6800694948 /* AppDelegate.swift */,
 				A4EDAD3D1DF6DC6800694948 /* ViewController.swift */,
 				A4EDAD3F1DF6DC6800694948 /* Main.storyboard */,
 				A4EDAD421DF6DC6800694948 /* Assets.xcassets */,
 				A4EDAD441DF6DC6800694948 /* LaunchScreen.storyboard */,
 				A4EDAD471DF6DC6800694948 /* Info.plist */,
+				A44FBD191DF6E4B60019BACF /* GoogleService-Info.plist */,
 			);
 			path = "JasperScholten-pset6";
+			sourceTree = "<group>";
+		};
+		A8139BA32DE6F0C3E4985AC9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A859F4F4566B5678BEF52FC0 /* Pods_JasperScholten_pset6.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +112,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A4EDAD4A1DF6DC6800694948 /* Build configuration list for PBXNativeTarget "JasperScholten-pset6" */;
 			buildPhases = (
+				E5D9CC295BFBC19ED94B251B /* 📦 Check Pods Manifest.lock */,
 				A4EDAD341DF6DC6800694948 /* Sources */,
 				A4EDAD351DF6DC6800694948 /* Frameworks */,
 				A4EDAD361DF6DC6800694948 /* Resources */,
+				6AE075D23CF76554E5614BF9 /* 📦 Embed Pods Frameworks */,
+				1B69CC8C9B84F6D921B469BF /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -98,6 +142,11 @@
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 3F7K5ABT44;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -125,6 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4EDAD461DF6DC6800694948 /* LaunchScreen.storyboard in Resources */,
+				A44FBD1A1DF6E4B60019BACF /* GoogleService-Info.plist in Resources */,
 				A4EDAD431DF6DC6800694948 /* Assets.xcassets in Resources */,
 				A4EDAD411DF6DC6800694948 /* Main.storyboard in Resources */,
 			);
@@ -132,13 +182,65 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1B69CC8C9B84F6D921B469BF /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JasperScholten-pset6/Pods-JasperScholten-pset6-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6AE075D23CF76554E5614BF9 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JasperScholten-pset6/Pods-JasperScholten-pset6-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E5D9CC295BFBC19ED94B251B /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A4EDAD341DF6DC6800694948 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A46EF6901DF6F6BB00A90453 /* LoginViewController.swift in Sources */,
 				A4EDAD3E1DF6DC6800694948 /* ViewController.swift in Sources */,
 				A4EDAD3C1DF6DC6800694948 /* AppDelegate.swift in Sources */,
+				A46EF6921DF6FA2B00A90453 /* MapViewController.swift in Sources */,
+				A46EF6961DF6FB0400A90453 /* FavoritesViewController.swift in Sources */,
+				A46EF6941DF6FAD900A90453 /* MonumentListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,8 +361,10 @@
 		};
 		A4EDAD4B1DF6DC6800694948 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9E95F211ECAD8519367B192 /* Pods-JasperScholten-pset6.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "JasperScholten-pset6/JasperScholten-pset6.entitlements";
 				DEVELOPMENT_TEAM = 3F7K5ABT44;
 				INFOPLIST_FILE = "JasperScholten-pset6/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -272,8 +376,10 @@
 		};
 		A4EDAD4C1DF6DC6800694948 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C25664F703BD9284322BA37 /* Pods-JasperScholten-pset6.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "JasperScholten-pset6/JasperScholten-pset6.entitlements";
 				DEVELOPMENT_TEAM = 3F7K5ABT44;
 				INFOPLIST_FILE = "JasperScholten-pset6/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -302,6 +408,7 @@
 				A4EDAD4C1DF6DC6800694948 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
