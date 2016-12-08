@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -30,7 +31,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGn-Up-Ra2">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="201"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="28"/>
-                                                <state key="normal" title="Monumentenkaart">
+                                                <state key="normal" title="Parkeerkaart">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -52,7 +53,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HvA-TU-gVo">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="201"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="28"/>
-                                                <state key="normal" title="Monumentenlijst">
+                                                <state key="normal" title="Parkeeradvies">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -108,10 +109,10 @@
             </objects>
             <point key="canvasLocation" x="1076" y="138.98050974512745"/>
         </scene>
-        <!--Monumentenkaart-->
+        <!--Parkeerkaart-->
         <scene sceneID="Grb-Gz-EJl">
             <objects>
-                <viewController title="Monumentenkaart" id="CZK-dh-pTJ" customClass="MapViewController" customModule="JasperScholten_pset6" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Parkeerkaart" id="CZK-dh-pTJ" customClass="MapViewController" customModule="JasperScholten_pset6" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5eZ-fg-ZMf"/>
                         <viewControllerLayoutGuide type="bottom" id="N3T-uK-B2v"/>
@@ -122,6 +123,9 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsPointsOfInterest="NO" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4cu-iv-P0k">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <connections>
+                                    <outlet property="delegate" destination="CZK-dh-pTJ" id="gAM-OQ-Ikl"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -140,10 +144,10 @@
             </objects>
             <point key="canvasLocation" x="1808.8" y="138.98050974512745"/>
         </scene>
-        <!--Monumentenlijst-->
+        <!--Parkeeradvies-->
         <scene sceneID="DBk-RU-RVd">
             <objects>
-                <viewController title="Monumentenlijst" id="662-qN-FMY" customClass="MonumentListViewController" customModule="JasperScholten_pset6" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Parkeeradvies" id="662-qN-FMY" customClass="MonumentListViewController" customModule="JasperScholten_pset6" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="spK-5E-riD"/>
                         <viewControllerLayoutGuide type="bottom" id="iGm-Sc-KWC"/>
@@ -152,19 +156,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dA3-uO-WE0">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dA3-uO-WE0">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="gmq-cj-yvK">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="monumentListCell" id="gmq-cj-yvK" customClass="MonumentListCell" customModule="JasperScholten_pset6" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gmq-cj-yvK" id="CWs-VD-hf3">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KWO-ft-0WO">
+                                                    <rect key="frame" x="24" y="34" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FIg-KN-ydm">
+                                                    <rect key="frame" x="24" y="8" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="KWO-ft-0WO" firstAttribute="leading" secondItem="CWs-VD-hf3" secondAttribute="leading" constant="24" id="55w-CC-fq7"/>
+                                                <constraint firstItem="KWO-ft-0WO" firstAttribute="top" secondItem="FIg-KN-ydm" secondAttribute="bottom" constant="5" id="6Tk-eJ-Y3l"/>
+                                                <constraint firstAttribute="bottom" secondItem="KWO-ft-0WO" secondAttribute="bottom" constant="4" id="7ID-55-2lC"/>
+                                                <constraint firstItem="FIg-KN-ydm" firstAttribute="top" secondItem="CWs-VD-hf3" secondAttribute="topMargin" id="PKa-Ts-T6i"/>
+                                                <constraint firstItem="FIg-KN-ydm" firstAttribute="leading" secondItem="CWs-VD-hf3" secondAttribute="leadingMargin" constant="16" id="hXd-Te-WGq"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="monumentListAdress" destination="KWO-ft-0WO" id="IfQ-IJ-VRz"/>
+                                            <outlet property="monumentListName" destination="FIg-KN-ydm" id="MpF-Ki-1T1"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="662-qN-FMY" id="Tqg-iX-919"/>
+                                    <outlet property="delegate" destination="662-qN-FMY" id="2ba-XY-Fod"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -172,13 +205,16 @@
                             <constraint firstItem="iGm-Sc-KWC" firstAttribute="top" secondItem="dA3-uO-WE0" secondAttribute="bottom" id="4QC-5A-Jsn"/>
                             <constraint firstAttribute="trailing" secondItem="dA3-uO-WE0" secondAttribute="trailing" id="RUT-hd-l37"/>
                             <constraint firstItem="dA3-uO-WE0" firstAttribute="leading" secondItem="S2S-00-S6O" secondAttribute="leading" id="Vos-KT-MKU"/>
-                            <constraint firstItem="dA3-uO-WE0" firstAttribute="top" secondItem="spK-5E-riD" secondAttribute="bottom" id="j6U-n5-pI2"/>
+                            <constraint firstItem="dA3-uO-WE0" firstAttribute="top" secondItem="S2S-00-S6O" secondAttribute="top" id="p8V-XP-AUu"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="monumentListTableView" destination="dA3-uO-WE0" id="SOw-ho-WoU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HjS-IB-KzO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1809" y="904"/>
+            <point key="canvasLocation" x="1808.8" y="903.59820089955031"/>
         </scene>
         <!--Favorieten-->
         <scene sceneID="oob-48-Eq2">
@@ -192,27 +228,51 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RkI-1y-QdZ">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RkI-1y-QdZ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="OOV-PX-81E">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="favoritesCell" id="OOV-PX-81E" customClass="FavoritesCell" customModule="JasperScholten_pset6" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OOV-PX-81E" id="n9G-df-Y1Y">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKC-79-rOe">
+                                                    <rect key="frame" x="8" y="8" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbV-iz-SHk">
+                                                    <rect key="frame" x="8" y="50" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="BKC-79-rOe" firstAttribute="top" secondItem="n9G-df-Y1Y" secondAttribute="topMargin" id="ZrG-lS-KHX"/>
+                                                <constraint firstItem="lbV-iz-SHk" firstAttribute="leading" secondItem="n9G-df-Y1Y" secondAttribute="leadingMargin" id="b3y-3w-e0l"/>
+                                                <constraint firstItem="BKC-79-rOe" firstAttribute="leading" secondItem="n9G-df-Y1Y" secondAttribute="leadingMargin" id="gMh-9a-eQP"/>
+                                                <constraint firstItem="lbV-iz-SHk" firstAttribute="bottom" secondItem="n9G-df-Y1Y" secondAttribute="bottomMargin" id="lL2-ZA-bOo"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="favoriteAdress" destination="lbV-iz-SHk" id="JQd-GG-XZl"/>
+                                            <outlet property="favoriteName" destination="BKC-79-rOe" id="yAP-fH-SQK"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="RkI-1y-QdZ" firstAttribute="top" secondItem="uIS-F6-7Lk" secondAttribute="top" id="5ge-oC-cEc"/>
                             <constraint firstItem="RkI-1y-QdZ" firstAttribute="leading" secondItem="uIS-F6-7Lk" secondAttribute="leading" id="SHN-2E-Drl"/>
                             <constraint firstAttribute="trailing" secondItem="RkI-1y-QdZ" secondAttribute="trailing" id="YZx-r8-rsK"/>
                             <constraint firstItem="nMy-bH-0Qx" firstAttribute="top" secondItem="RkI-1y-QdZ" secondAttribute="bottom" id="nQg-SP-hNj"/>
-                            <constraint firstItem="RkI-1y-QdZ" firstAttribute="top" secondItem="ahi-dO-ggF" secondAttribute="bottom" id="piG-TF-TjE"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -228,7 +288,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="atr-Lm-cGb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.94790984950000001" green="0.1961810594" blue="0.20568641139999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

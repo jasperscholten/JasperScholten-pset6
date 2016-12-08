@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import CoreLocation
 
 class LoginViewController: UIViewController {
 
+    var locationManager: CLLocationManager!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        locationManager = CLLocationManager()
+        locationManager.requestWhenInUseAuthorization()
 
         // Do any additional setup after loading the view.
     }
