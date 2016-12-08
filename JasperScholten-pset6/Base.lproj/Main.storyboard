@@ -28,6 +28,9 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RHv-VI-Ebv">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="201"/>
                                         <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AmsterdamMapBlur" translatesAutoresizingMaskIntoConstraints="NO" id="2IO-nF-4HR">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="201"/>
+                                            </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGn-Up-Ra2">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="201"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="28"/>
@@ -41,20 +44,27 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.55721323690000002" green="0.93870664270000004" blue="0.55166330119999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
+                                            <constraint firstItem="2IO-nF-4HR" firstAttribute="top" secondItem="RHv-VI-Ebv" secondAttribute="top" id="46O-g4-nKH"/>
+                                            <constraint firstAttribute="trailing" secondItem="2IO-nF-4HR" secondAttribute="trailing" id="8tL-fK-EYI"/>
                                             <constraint firstAttribute="trailing" secondItem="jGn-Up-Ra2" secondAttribute="trailing" id="9gw-eQ-5vT"/>
                                             <constraint firstItem="jGn-Up-Ra2" firstAttribute="leading" secondItem="RHv-VI-Ebv" secondAttribute="leading" id="Fqp-uZ-M9f"/>
+                                            <constraint firstItem="2IO-nF-4HR" firstAttribute="leading" secondItem="RHv-VI-Ebv" secondAttribute="leading" id="Ia0-ot-22g"/>
                                             <constraint firstItem="jGn-Up-Ra2" firstAttribute="top" secondItem="RHv-VI-Ebv" secondAttribute="top" id="Ke4-Zk-r0A"/>
+                                            <constraint firstAttribute="bottom" secondItem="2IO-nF-4HR" secondAttribute="bottom" id="kJg-ps-pNZ"/>
                                             <constraint firstAttribute="bottom" secondItem="jGn-Up-Ra2" secondAttribute="bottom" id="zHs-Yi-7v8"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2QK-a8-ItN">
                                         <rect key="frame" x="0.0" y="201" width="375" height="201"/>
                                         <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ParkingCentreBlur" translatesAutoresizingMaskIntoConstraints="NO" id="zj2-53-r1i">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="201"/>
+                                            </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HvA-TU-gVo">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="201"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="28"/>
                                                 <state key="normal" title="Parkeeradvies">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
                                                     <segue destination="662-qN-FMY" kind="show" id="1bo-co-lIb"/>
@@ -65,18 +75,25 @@
                                         <constraints>
                                             <constraint firstItem="HvA-TU-gVo" firstAttribute="top" secondItem="2QK-a8-ItN" secondAttribute="top" id="JKE-5a-p6C"/>
                                             <constraint firstAttribute="bottom" secondItem="HvA-TU-gVo" secondAttribute="bottom" id="Oog-zq-Sb0"/>
+                                            <constraint firstAttribute="bottom" secondItem="zj2-53-r1i" secondAttribute="bottom" id="X0M-bh-fMu"/>
+                                            <constraint firstAttribute="trailing" secondItem="zj2-53-r1i" secondAttribute="trailing" id="dvm-Uy-VFN"/>
+                                            <constraint firstItem="zj2-53-r1i" firstAttribute="leading" secondItem="2QK-a8-ItN" secondAttribute="leading" id="iyQ-N9-dMB"/>
                                             <constraint firstAttribute="trailing" secondItem="HvA-TU-gVo" secondAttribute="trailing" id="j47-TW-mCU"/>
+                                            <constraint firstItem="zj2-53-r1i" firstAttribute="top" secondItem="2QK-a8-ItN" secondAttribute="top" id="jfB-PG-Z0L"/>
                                             <constraint firstItem="HvA-TU-gVo" firstAttribute="leading" secondItem="2QK-a8-ItN" secondAttribute="leading" id="t8L-1A-VWn"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gql-11-hYQ">
                                         <rect key="frame" x="0.0" y="402" width="375" height="201"/>
                                         <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AmsterdamCanalBlur" translatesAutoresizingMaskIntoConstraints="NO" id="V6g-Aa-2fA">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="201"/>
+                                            </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aov-FO-WYK">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="201"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="28"/>
                                                 <state key="normal" title="Favorieten">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
                                                     <segue destination="hhk-8s-n2E" kind="show" id="IHw-Em-GgX"/>
@@ -87,8 +104,12 @@
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="aov-FO-WYK" secondAttribute="bottom" id="Cyi-X5-VY8"/>
                                             <constraint firstAttribute="trailing" secondItem="aov-FO-WYK" secondAttribute="trailing" id="TYp-QI-oEH"/>
+                                            <constraint firstAttribute="bottom" secondItem="V6g-Aa-2fA" secondAttribute="bottom" id="WQ9-BK-lIe"/>
                                             <constraint firstItem="aov-FO-WYK" firstAttribute="top" secondItem="gql-11-hYQ" secondAttribute="top" id="aPH-5b-JWm"/>
+                                            <constraint firstItem="V6g-Aa-2fA" firstAttribute="leading" secondItem="gql-11-hYQ" secondAttribute="leading" id="j4t-Na-KCv"/>
+                                            <constraint firstAttribute="trailing" secondItem="V6g-Aa-2fA" secondAttribute="trailing" id="mTi-LT-LwD"/>
                                             <constraint firstItem="aov-FO-WYK" firstAttribute="leading" secondItem="gql-11-hYQ" secondAttribute="leading" id="xC7-Os-iwl"/>
+                                            <constraint firstItem="V6g-Aa-2fA" firstAttribute="top" secondItem="gql-11-hYQ" secondAttribute="top" id="xUx-7G-wyq"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -383,4 +404,9 @@
             <point key="canvasLocation" x="-504.80000000000001" y="138.98050974512745"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="AmsterdamCanalBlur" width="1280" height="700"/>
+        <image name="AmsterdamMapBlur" width="750" height="532"/>
+        <image name="ParkingCentreBlur" width="1280" height="720"/>
+    </resources>
 </document>
