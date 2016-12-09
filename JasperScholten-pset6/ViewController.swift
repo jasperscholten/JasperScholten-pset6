@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ViewController: UIViewController {
 
@@ -20,6 +21,12 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    
+    @IBAction func signOut(_ sender: AnyObject) {
+        try! FIRAuth.auth()!.signOut()
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
 }
 

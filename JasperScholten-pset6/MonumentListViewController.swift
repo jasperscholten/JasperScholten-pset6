@@ -20,6 +20,7 @@ class MonumentListViewController: UIViewController, UITableViewDataSource, UITab
     var locationManager: CLLocationManager!
     var latitude: String = ""
     var longitude: String = ""
+    var user: User!
     
     // MARK: Outlets
     @IBOutlet weak var monumentListTableView: UITableView!
@@ -28,6 +29,13 @@ class MonumentListViewController: UIViewController, UITableViewDataSource, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         self.determineMyCurrentLocation()
+        
+        user = User(uid: "FakeId", email: "location@parking.com")
+        
+        FIRAuth.auth()!.addStateDidChangeListener { auth, user in
+            guard let user = user else { return }
+            self.user = User(authData: user)
+        }
     }
     
     
@@ -141,7 +149,7 @@ class MonumentListViewController: UIViewController, UITableViewDataSource, UITab
                                            objectLocation: meterID,
                                            discipline: "\(self.parkingList[(indexPath?.row)!][4]), \(self.parkingList[(indexPath?.row)!][5])",
                                            coordinate: CLLocationCoordinate2DMake(lat, lon),
-                                           addedByUser: "hungry@person.food")
+                                           addedByUser: self.user.email )
 
         let parkingLocationRef = self.ref.child(meterID)
         parkingLocationRef.setValue(parkingLocation.toAnyObject())

@@ -45,7 +45,7 @@ class MonumentInfo: NSObject, MKAnnotation {
         self.objectName = snapshotValue["objectName"] as! String
         self.objectLocation = snapshotValue["objectLocation"] as! String
         self.discipline = snapshotValue["coordinate"] as! String
-        self.addedByUser = snapshotValue["addedByUser"] as! String
+        self.addedByUser = snapshotValue["addedByUser"] as? String ?? ""
         self.ref = snapshot.ref
         self.coordinate = CLLocationCoordinate2DMake(0.00, 0.00)
     }
@@ -59,8 +59,3 @@ class MonumentInfo: NSObject, MKAnnotation {
         ]
     }
 }
-
-/*abc_adres
-  abc_objectnaam
-  abc_lat
-  abc_lon*/

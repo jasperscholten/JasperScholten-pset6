@@ -124,7 +124,18 @@
                             <constraint firstItem="lx4-Ur-N7h" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="oIB-Xn-JL9"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Parkeren in Amsterdam" id="lPg-kR-3X7"/>
+                    <navigationItem key="navigationItem" title="Parkeren in Amsterdam" id="lPg-kR-3X7">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="7eI-Zw-WPc">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WVd-wQ-uq7">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Uitloggen"/>
+                                <connections>
+                                    <action selector="signOut:" destination="BYZ-38-t0r" eventType="touchUpInside" id="A5x-ob-Bo0"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -397,7 +408,6 @@
                                                 <state key="normal" title="Login"/>
                                                 <connections>
                                                     <action selector="loginDidTouch:" destination="jW9-WQ-Mca" eventType="touchUpInside" id="oFG-aC-eyd"/>
-                                                    <segue destination="38s-ja-0dQ" kind="show" identifier="login" id="iNh-7v-YYm"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="COx-dM-iWd">
@@ -423,6 +433,7 @@
                     <connections>
                         <outlet property="emailField" destination="Cee-6B-Fte" id="d7A-M9-Hal"/>
                         <outlet property="passwordField" destination="sKg-Tt-EBJ" id="4Wd-wh-tmY"/>
+                        <segue destination="38s-ja-0dQ" kind="presentation" identifier="LoginToParking" id="AQO-am-bXG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I3D-Iz-nqa" userLabel="First Responder" sceneMemberID="firstResponder"/>

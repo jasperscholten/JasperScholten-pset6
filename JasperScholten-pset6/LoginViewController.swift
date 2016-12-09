@@ -14,7 +14,7 @@ class LoginViewController: UIViewController {
 
     // MARK: Constants and variables
     var locationManager: CLLocationManager!
-    let login = "login"
+    //let login = "login"
     let ref = FIRDatabase.database().reference(withPath: "parkingLocations")
     
     // MARK: Outlets
@@ -24,14 +24,16 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        passwordField.isSecureTextEntry = true
+        
         locationManager = CLLocationManager()
         locationManager.requestWhenInUseAuthorization()
         
-        /*FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
+        FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
             if user != nil {
-                self.performSegue(withIdentifier: self.login, sender: nil)
+                self.performSegue(withIdentifier: "LoginToParking", sender: nil)
             }
-        }*/
+        }
 
         // Do any additional setup after loading the view.
     }
@@ -46,6 +48,8 @@ class LoginViewController: UIViewController {
     @IBAction func loginDidTouch(_ sender: Any) {
         FIRAuth.auth()!.signIn(withEmail: emailField.text!,
                                password: passwordField.text!)
+        emailField.text! = ""
+        passwordField.text! = ""
     }
     
     @IBAction func signUpDidTouch(_ sender: Any) {
@@ -86,5 +90,7 @@ class LoginViewController: UIViewController {
         
         present(alert, animated: true, completion: nil)
     }
+    
+    
 
 }
