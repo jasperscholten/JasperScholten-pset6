@@ -7,13 +7,32 @@
 //
 
 import UIKit
+import Firebase
 
-class FavoritesViewController: UIViewController {
+class FavoritesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    // MARK: Constants and variables
+    var locations: [MonumentInfo] = []
+    let ref = FIRDatabase.database().reference(withPath: "parkingLocations")
+    
+    // MARK: Outlets
+    @IBOutlet weak var favoritesTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        ref.observe(.value, with: { snapshot in
+    
+            var newLocations: [MonumentInfo] = []
+            
+            for item in snapshot.children {
+                let parkingLocation = MonumentInfo(snapshot: item as! FIRDataSnapshot)
+                newLocations.append(parkingLocation)
+            }
+            
+            self.locations = newLocations
+            self.favoritesTableView.reloadData()
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,15 +40,19 @@ class FavoritesViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return locations.count
     }
-    */
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = favoritesTableView.dequeueReusableCell(withIdentifier: "favoritesCell", for: indexPath) as! FavoritesCell
+        let parkingLocation = self.locations[indexPath.row]
+        
+        cell.favoriteName.text = parkingLocation.objectName
+        cell.favoriteAdress.text = "Meternummer \(parkingLocation.objectLocation)"
+        
+        return cell
+    }
+    
 
 }

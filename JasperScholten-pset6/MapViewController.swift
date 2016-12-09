@@ -108,7 +108,12 @@ class MapViewController: UIViewController{
                         //print(selection["adres"]!)
                         //self.parkingLocations.append([selection["lat"]!, selection["lon"]!, selection["adres"]!])
                         
-                        let monument = MonumentInfo(objectName: selection["adres"] as! String, objectLocation: selection["adres"] as! String, discipline: "Parkeergarage", coordinate: CLLocationCoordinate2D(latitude: selection["lat"] as! CLLocationDegrees, longitude: selection["lon"] as! CLLocationDegrees))
+                        let lat = selection["lat"] as! Double
+                        let lon = selection["lon"] as! Double
+                        
+                        
+                        let monument = MonumentInfo(objectName: selection["adres"] as! String,
+                                                objectLocation: selection["stadsdeel"] as! String, discipline: selection["belnummer"] as! String, coordinate: CLLocationCoordinate2DMake(lat, lon))
                         
                         self.monumentMap.addAnnotation(monument)
                     }

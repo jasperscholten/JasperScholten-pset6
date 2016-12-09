@@ -10,10 +10,12 @@
 
 import UIKit
 import CoreLocation
+import Firebase
 
 class MonumentListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
 
     // MARK: Constants and variables
+    let ref = FIRDatabase.database().reference(withPath: "parkingLocations")
     var parkingList = [[AnyObject]]()
     var locationManager: CLLocationManager!
     var latitude: String = ""
@@ -25,7 +27,6 @@ class MonumentListViewController: UIViewController, UITableViewDataSource, UITab
     // MARK: UIViewController Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.determineMyCurrentLocation()
     }
     
@@ -51,10 +52,10 @@ class MonumentListViewController: UIViewController, UITableViewDataSource, UITab
         // Call stopUpdatingLocation() to stop listening for location updates,
         // other wise this function will be called every time when user location changes.
         
-        // manager.stopUpdatingLocation()
-        
         self.latitude = String(format:"%f", userLocation.coordinate.latitude)
         self.longitude = String(format:"%f", userLocation.coordinate.longitude)
+        
+        manager.stopUpdatingLocation()
         
         // Now repeatingly fetching data - best solution?
         self.getJson()
@@ -108,7 +109,6 @@ class MonumentListViewController: UIViewController, UITableViewDataSource, UITab
     // MARK: Populate tableView
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(parkingList.count)
         return parkingList.count
     }
     
@@ -116,14 +116,34 @@ class MonumentListViewController: UIViewController, UITableViewDataSource, UITab
         
         let cell = monumentListTableView.dequeueReusableCell(withIdentifier: "monumentListCell", for: indexPath) as! MonumentListCell
         
-        print(self.parkingList[indexPath.row][1])
-        
         cell.monumentListName.text = (self.parkingList[indexPath.row][3] as! String)
         let parkingRate = (self.parkingList[indexPath.row][1] as! Float)/3
         cell.monumentListAdress.text = "€ \(String(format: "%.2f", parkingRate)) per uur"
         
         return cell
         
+    }
+    
+    // MARK: Actions
+    
+    @IBAction func addToFavorites(_ sender: Any) {
+        
+        // Method to retrieve the indexpath of the cell that the user clicks on. http://stackoverflow.com/questions/39603922/getting-row-of-uitableview-cell-on-button-press-swift-3
+        let switchPos = (sender as AnyObject).convert(CGPoint.zero, to: self.monumentListTableView)
+        let indexPath = self.monumentListTableView.indexPathForRow(at: switchPos)
+        
+        let parkingAdress = self.parkingList[(indexPath?.row)!][3] as! String
+        let meterID = self.parkingList[(indexPath?.row)!][0] as! String
+        let lat = self.parkingList[(indexPath?.row)!][4] as! Double
+        let lon = self.parkingList[(indexPath?.row)!][5] as! Double
+        
+        let parkingLocation = MonumentInfo(objectName: parkingAdress,
+                                           objectLocation: meterID,
+                                           discipline: "\(self.parkingList[(indexPath?.row)!][4]), \(self.parkingList[(indexPath?.row)!][5])",
+                                           coordinate: CLLocationCoordinate2DMake(lat, lon))
+
+        let parkingLocationRef = self.ref.child(meterID)
+        parkingLocationRef.setValue(parkingLocation.toAnyObject())
     }
 
 }

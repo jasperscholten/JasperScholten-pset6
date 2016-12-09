@@ -14,6 +14,7 @@ class MonumentListCell: UITableViewCell {
     
     @IBOutlet weak var monumentListName: UILabel!
     @IBOutlet weak var monumentListAdress: UILabel!
+    @IBOutlet weak var addFavorite: UIButton!
     
     
     
