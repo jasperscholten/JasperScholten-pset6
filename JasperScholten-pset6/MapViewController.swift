@@ -101,8 +101,8 @@ class MapViewController: UIViewController{
                     let json = try! JSONSerialization.jsonObject(with: data, options: []) as! [String:AnyObject]
                     
                     DispatchQueue.main.async {
-                        let array = json["items"]
-                        let selection = array![0] as! [String: AnyObject]
+                        let array = json["items"] as! [AnyObject]
+                        let selection = array[0] as! [String: AnyObject]
                         //print(selection["lat"]!)
                         //print(selection["lon"]!)
                         //print(selection["adres"]!)
@@ -113,7 +113,7 @@ class MapViewController: UIViewController{
                         
                         
                         let monument = MonumentInfo(objectName: selection["adres"] as! String,
-                                                objectLocation: selection["stadsdeel"] as! String, discipline: selection["belnummer"] as! String, coordinate: CLLocationCoordinate2DMake(lat, lon))
+                                                    objectLocation: selection["stadsdeel"] as! String, discipline: selection["belnummer"] as! String, coordinate: CLLocationCoordinate2DMake(lat, lon), addedByUser: "hungry@person.food")
                         
                         self.monumentMap.addAnnotation(monument)
                     }

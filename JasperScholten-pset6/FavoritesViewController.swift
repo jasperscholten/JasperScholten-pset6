@@ -54,5 +54,12 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         return cell
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let parkingLocation = locations[indexPath.row]
+            parkingLocation.ref?.removeValue()
+        }
+    }
+    
 
 }

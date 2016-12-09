@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Parkeren in Amsterdam-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JasperScholten_pset6" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Parkeren in Amsterdam" id="BYZ-38-t0r" customClass="ViewController" customModule="JasperScholten_pset6" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -124,7 +124,7 @@
                             <constraint firstItem="lx4-Ur-N7h" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="oIB-Xn-JL9"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="lPg-kR-3X7"/>
+                    <navigationItem key="navigationItem" title="Parkeren in Amsterdam" id="lPg-kR-3X7"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -396,6 +396,7 @@
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <state key="normal" title="Login"/>
                                                 <connections>
+                                                    <action selector="loginDidTouch:" destination="jW9-WQ-Mca" eventType="touchUpInside" id="oFG-aC-eyd"/>
                                                     <segue destination="38s-ja-0dQ" kind="show" identifier="login" id="iNh-7v-YYm"/>
                                                 </connections>
                                             </button>
@@ -408,6 +409,9 @@
                                                 </constraints>
                                                 <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <state key="normal" title="Signup"/>
+                                                <connections>
+                                                    <action selector="signUpDidTouch:" destination="jW9-WQ-Mca" eventType="touchUpInside" id="PA6-7r-q9c"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -416,6 +420,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.94790984950000001" green="0.1961810594" blue="0.20568641139999999" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="emailField" destination="Cee-6B-Fte" id="d7A-M9-Hal"/>
+                        <outlet property="passwordField" destination="sKg-Tt-EBJ" id="4Wd-wh-tmY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I3D-Iz-nqa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -15,14 +15,16 @@ class MonumentInfo: NSObject, MKAnnotation {
     let objectLocation: String
     let discipline: String
     let coordinate: CLLocationCoordinate2D
+    let addedByUser: String
     let key: String
     let ref: FIRDatabaseReference?
     
-    init(objectName: String, objectLocation: String, discipline: String, coordinate: CLLocationCoordinate2D, key: String = "") {
+    init(objectName: String, objectLocation: String, discipline: String, coordinate: CLLocationCoordinate2D, addedByUser: String, key: String = "") {
         self.objectName = objectName
         self.objectLocation = objectLocation
         self.discipline = discipline
         self.coordinate = coordinate
+        self.addedByUser = addedByUser
         self.key = key
         self.ref = nil
         
@@ -43,6 +45,7 @@ class MonumentInfo: NSObject, MKAnnotation {
         self.objectName = snapshotValue["objectName"] as! String
         self.objectLocation = snapshotValue["objectLocation"] as! String
         self.discipline = snapshotValue["coordinate"] as! String
+        self.addedByUser = snapshotValue["addedByUser"] as! String
         self.ref = snapshot.ref
         self.coordinate = CLLocationCoordinate2DMake(0.00, 0.00)
     }
@@ -52,6 +55,7 @@ class MonumentInfo: NSObject, MKAnnotation {
             "objectName": objectName,
             "objectLocation": objectLocation,
             "coordinate": discipline,
+            "addedByUser": addedByUser
         ]
     }
 }

@@ -140,7 +140,8 @@ class MonumentListViewController: UIViewController, UITableViewDataSource, UITab
         let parkingLocation = MonumentInfo(objectName: parkingAdress,
                                            objectLocation: meterID,
                                            discipline: "\(self.parkingList[(indexPath?.row)!][4]), \(self.parkingList[(indexPath?.row)!][5])",
-                                           coordinate: CLLocationCoordinate2DMake(lat, lon))
+                                           coordinate: CLLocationCoordinate2DMake(lat, lon),
+                                           addedByUser: "hungry@person.food")
 
         let parkingLocationRef = self.ref.child(meterID)
         parkingLocationRef.setValue(parkingLocation.toAnyObject())
