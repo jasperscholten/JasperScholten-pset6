@@ -335,11 +335,11 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="38s-ja-0dQ" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="atr-Lm-cGb">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="atr-Lm-cGb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="0.94790984950000001" green="0.1961810594" blue="0.20568641139999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.047058823529411764" green="0.37254901960784315" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -435,7 +435,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.94790984950000001" green="0.1961810594" blue="0.20568641139999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.047058823529411764" green="0.37254901960784315" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
                         <outlet property="emailField" destination="Cee-6B-Fte" id="d7A-M9-Hal"/>
