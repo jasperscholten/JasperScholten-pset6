@@ -19,6 +19,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     let defaults = UserDefaults.standard
     var parkingList = [[AnyObject]]()
     var locationManager: CLLocationManager!
+    let spinner1 = customActivityIndicator(text: "Locaties ophalen")
+    //let spinner2 = customActivityIndicator(text: "Plaatsen op kaart")
     
     // MARK: Outlets
     @IBOutlet weak var monumentMap: MKMapView!
@@ -28,6 +30,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //self.view.addSubview(self.spinner2)
+        self.view.addSubview(self.spinner1)
         getJson()
         
         var initialLocation = CLLocation(latitude: 52.370216, longitude: 4.895168)
@@ -133,6 +137,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                     let array = json["results"]! as! [[AnyObject]]
                     self.parkingList = array
                     self.populateMap()
+                    self.spinner1.hide()
                 }
                 
             }
@@ -186,6 +191,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             }
             
         }
+        
+        //self.spinner2.hide()
         
     }
 

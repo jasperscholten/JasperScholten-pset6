@@ -11,6 +11,7 @@
 		A44E36B31DF98941008AD303 /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44E36B21DF98940008AD303 /* FavoritesCell.swift */; };
 		A44E36B51DF98990008AD303 /* MonumentListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44E36B41DF98990008AD303 /* MonumentListCell.swift */; };
 		A44E36B91DFB6441008AD303 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44E36B81DFB6441008AD303 /* User.swift */; };
+		A44E36D31DFF5B2D008AD303 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44E36D21DFF5B2D008AD303 /* ActivityIndicator.swift */; };
 		A44FBD1A1DF6E4B60019BACF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A44FBD191DF6E4B60019BACF /* GoogleService-Info.plist */; };
 		A46EF6901DF6F6BB00A90453 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46EF68F1DF6F6BB00A90453 /* LoginViewController.swift */; };
 		A46EF6921DF6FA2B00A90453 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46EF6911DF6FA2B00A90453 /* MapViewController.swift */; };
@@ -29,6 +30,7 @@
 		A44E36B21DF98940008AD303 /* FavoritesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
 		A44E36B41DF98990008AD303 /* MonumentListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonumentListCell.swift; sourceTree = "<group>"; };
 		A44E36B81DFB6441008AD303 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A44E36D21DFF5B2D008AD303 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		A44FBD191DF6E4B60019BACF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A46EF68C1DF6F1F900A90453 /* JasperScholten-pset6.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "JasperScholten-pset6.entitlements"; sourceTree = "<group>"; };
 		A46EF68F1DF6F6BB00A90453 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				A46EF6951DF6FB0400A90453 /* FavoritesViewController.swift */,
 				A46EF6971DF701D600A90453 /* monumentInfo.swift */,
 				A44E36B81DFB6441008AD303 /* User.swift */,
+				A44E36D21DFF5B2D008AD303 /* ActivityIndicator.swift */,
 				A44E36B21DF98940008AD303 /* FavoritesCell.swift */,
 				A44E36B41DF98990008AD303 /* MonumentListCell.swift */,
 				A4EDAD3B1DF6DC6800694948 /* AppDelegate.swift */,
@@ -252,6 +255,7 @@
 				A44E36B31DF98941008AD303 /* FavoritesCell.swift in Sources */,
 				A4EDAD3E1DF6DC6800694948 /* ViewController.swift in Sources */,
 				A4EDAD3C1DF6DC6800694948 /* AppDelegate.swift in Sources */,
+				A44E36D31DFF5B2D008AD303 /* ActivityIndicator.swift in Sources */,
 				A46EF6921DF6FA2B00A90453 /* MapViewController.swift in Sources */,
 				A46EF6961DF6FB0400A90453 /* FavoritesViewController.swift in Sources */,
 				A46EF6981DF701D600A90453 /* monumentInfo.swift in Sources */,

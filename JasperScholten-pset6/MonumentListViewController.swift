@@ -16,6 +16,7 @@ class MonumentListViewController: UIViewController, UITableViewDataSource, UITab
 
     // MARK: Constants and variables
     let ref = FIRDatabase.database().reference(withPath: "parkingLocations")
+    let spinner = customActivityIndicator(text: "Advies laden")
     var parkingList = [[AnyObject]]()
     var locationManager: CLLocationManager!
     var latitude: String = ""
@@ -28,6 +29,9 @@ class MonumentListViewController: UIViewController, UITableViewDataSource, UITab
     // MARK: UIViewController Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.addSubview(self.spinner)
+        
         self.determineMyCurrentLocation()
         
         user = User(uid: "FakeId", email: "location@parking.com")
@@ -100,6 +104,7 @@ class MonumentListViewController: UIViewController, UITableViewDataSource, UITab
                     
                     // http://stackoverflow.com/questions/27797930/swift-how-to-create-a-table-view-based-on-data-downloaded-asynchronously
                     self.monumentListTableView.reloadData()
+                    self.spinner.hide()
                 }
                 
             }
