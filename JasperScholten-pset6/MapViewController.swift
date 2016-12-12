@@ -10,15 +10,19 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
-class MapViewController: UIViewController{
+class MapViewController: UIViewController, CLLocationManagerDelegate {
 
     //MARK: Constants and variables
     let regionRadius: CLLocationDistance = 1000
+    let defaults = UserDefaults.standard
     var parkingList = [[AnyObject]]()
+    var locationManager: CLLocationManager!
     
     // MARK: Outlets
     @IBOutlet weak var monumentMap: MKMapView!
+    
     
     // MARK: UIViewController Lifecycle
     override func viewDidLoad() {
@@ -26,7 +30,15 @@ class MapViewController: UIViewController{
 
         getJson()
         
-        let initialLocation = CLLocation(latitude: 52.370216, longitude: 4.895168)
+        var initialLocation = CLLocation(latitude: 52.370216, longitude: 4.895168)
+        
+        if defaults.double(forKey: "latitude") != 0.0 {
+            let latitude = defaults.double(forKey: "latitude")
+            let longitude = defaults.double(forKey: "longitude")
+            
+            initialLocation = CLLocation(latitude: latitude, longitude: longitude)
+        }
+        
         centerMapOnLocation(location: initialLocation)
         
     }
@@ -35,6 +47,72 @@ class MapViewController: UIViewController{
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 2.0, regionRadius * 2.0)
         monumentMap.setRegion(coordinateRegion, animated: true)
     }
+    
+    // MARK: Actions
+    
+    @IBAction func centerMap(_ sender: Any) {
+        var latitude = defaults.double(forKey: "latitude")
+        var longitude = defaults.double(forKey: "longitude")
+        
+        if latitude == 0.0 {
+            latitude = 52.370216
+            longitude = 4.895168
+        }
+        
+        let defaultLocation = CLLocation(latitude: latitude, longitude: longitude)
+        centerMapOnLocation(location: defaultLocation)
+    }
+    
+    @IBAction func newDefaultCenter(_ sender: Any) {
+        determineMyCurrentLocation()
+        
+        let alert = UIAlertController(title: "Centreer kaart", message: "Je hebt je huidige locatie ingesteld als nieuwe centrum van de kaart.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    
+    
+    
+    // MARK: Determine user's location
+    // http://swiftdeveloperblog.com/code-examples/determine-users-current-location-example-in-swift/
+    
+    func determineMyCurrentLocation() {
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+        }
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation:CLLocation = locations[0] as CLLocation
+        
+        let latitude: Double = userLocation.coordinate.latitude
+        let longitude: Double = userLocation.coordinate.longitude
+        
+        manager.stopUpdatingLocation()
+        
+        let newCenter = CLLocation(latitude: latitude, longitude: longitude)
+        centerMapOnLocation(location: newCenter)
+        
+        defaults.set(latitude, forKey: "latitude")
+        defaults.set(longitude, forKey: "longitude")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
+    {
+        print("Error \(error)")
+    }
+    
+    
+    
+    
+    
     
     
     // MARK: Retrieve json

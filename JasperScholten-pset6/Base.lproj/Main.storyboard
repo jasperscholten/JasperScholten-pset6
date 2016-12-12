@@ -154,17 +154,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsPointsOfInterest="NO" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4cu-iv-P0k">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <connections>
                                     <outlet property="delegate" destination="CZK-dh-pTJ" id="gAM-OQ-Ikl"/>
                                 </connections>
                             </mapView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ew-Ku-egl">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem title="Centreer kaart" id="tBF-bk-UMh">
+                                        <connections>
+                                            <action selector="centerMap:" destination="CZK-dh-pTJ" id="bMU-bh-sHz"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="flexibleSpace" id="eyi-Fi-Njg"/>
+                                    <barButtonItem image="locationArrow" id="JRg-tj-JKK" userLabel="NewCenter">
+                                        <connections>
+                                            <action selector="newDefaultCenter:" destination="CZK-dh-pTJ" id="IgV-b7-g1P"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="N3T-uK-B2v" firstAttribute="top" secondItem="4cu-iv-P0k" secondAttribute="bottom" id="L15-va-oWy"/>
+                            <constraint firstItem="N3T-uK-B2v" firstAttribute="top" secondItem="4ew-Ku-egl" secondAttribute="bottom" id="5S0-MW-Xml"/>
+                            <constraint firstItem="4ew-Ku-egl" firstAttribute="top" secondItem="4cu-iv-P0k" secondAttribute="bottom" id="CUm-Y9-sdR"/>
                             <constraint firstAttribute="trailing" secondItem="4cu-iv-P0k" secondAttribute="trailing" id="SYK-8f-zRX"/>
+                            <constraint firstItem="4ew-Ku-egl" firstAttribute="leading" secondItem="UTP-4B-rRl" secondAttribute="leading" id="Wfq-1L-kwJ"/>
+                            <constraint firstAttribute="trailing" secondItem="4ew-Ku-egl" secondAttribute="trailing" id="Wzi-8V-cjx"/>
                             <constraint firstItem="4cu-iv-P0k" firstAttribute="top" secondItem="5eZ-fg-ZMf" secondAttribute="bottom" id="b2D-wY-7V3"/>
+                            <constraint firstItem="4ew-Ku-egl" firstAttribute="top" secondItem="4cu-iv-P0k" secondAttribute="bottom" id="cT3-8n-eRu"/>
                             <constraint firstItem="4cu-iv-P0k" firstAttribute="leading" secondItem="UTP-4B-rRl" secondAttribute="leading" id="xJp-W9-K5G"/>
                         </constraints>
                     </view>
@@ -335,7 +355,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="38s-ja-0dQ" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="atr-Lm-cGb">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="atr-Lm-cGb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -452,5 +472,6 @@
         <image name="AmsterdamCanalBlur" width="1280" height="700"/>
         <image name="AmsterdamMapBlur" width="750" height="532"/>
         <image name="ParkingCentreBlur" width="1280" height="720"/>
+        <image name="locationArrow" width="30" height="30"/>
     </resources>
 </document>
