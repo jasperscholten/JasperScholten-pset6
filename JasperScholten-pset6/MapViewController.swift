@@ -71,10 +71,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         self.present(alert, animated: true, completion: nil)
     }
     
-    
-    
-    
-    
     // MARK: Determine user's location
     // http://swiftdeveloperblog.com/code-examples/determine-users-current-location-example-in-swift/
     
@@ -109,18 +105,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         print("Error \(error)")
     }
     
-    
-    
-    
-    
-    
-    
     // MARK: Retrieve json
     
     func getJson() {
         //let url = URL(string: "http://api.parkshark.nl/psapi/api.jsp?day=5&hr=8&min=30&duration=3&lat=" + self.latitude + "&lon=" + self.longitude + "&methods=cash,pin")
         
-        let url = URL(string: "http://api.parkshark.nl/psapi/api.jsp?day=5&hr=8&min=30&duration=1&lat=37.785834&lon=-122.406417&methods=cash,pin")
+        let url = URL(string: "http://api.parkshark.nl/psapi/api.jsp?day=5&hr=8&min=30&duration=1&lat=52.370216&lon=4.895168&methods=cash,pin")
         print(url!)
         
         if url == nil {
@@ -155,7 +145,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     func populateMap() {
         
         for i in 0..<self.parkingList.count {
-        //for i in 0...100 {
             
             let meterID = self.parkingList[i][0] as! String
             
