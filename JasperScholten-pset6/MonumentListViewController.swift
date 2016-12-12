@@ -61,7 +61,6 @@ class MonumentListViewController: UIViewController, UITableViewDataSource, UITab
         
         manager.stopUpdatingLocation()
         
-        // Now repeatingly fetching data - best solution?
         self.getJson()
         
         print("user latitude = \(self.latitude)")
@@ -149,6 +148,10 @@ class MonumentListViewController: UIViewController, UITableViewDataSource, UITab
 
         let parkingLocationRef = self.ref.child(meterID)
         parkingLocationRef.setValue(parkingLocation.toAnyObject())
+        
+        let alert = UIAlertController(title: "Toegevoegd aan favorieten", message: "Je hebt \(parkingAdress) toegevoegd aan je favoriete parkeerlocaties.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 
 }
