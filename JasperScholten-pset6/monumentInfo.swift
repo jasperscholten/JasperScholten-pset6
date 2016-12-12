@@ -9,6 +9,7 @@
 import Foundation
 import MapKit
 import Firebase
+import Contacts
 
 class MonumentInfo: NSObject, MKAnnotation {
     let objectName: String
@@ -57,5 +58,16 @@ class MonumentInfo: NSObject, MKAnnotation {
             "coordinate": discipline,
             "addedByUser": addedByUser
         ]
+    }
+    
+    // annotation callout info button opens this mapItem in Maps app
+    func mapItem() -> MKMapItem {
+        let addressDictionary = [String(CNPostalAddressStreetKey): title]
+        let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: addressDictionary)
+        
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = title
+        
+        return mapItem
     }
 }

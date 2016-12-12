@@ -16,7 +16,6 @@ class MapViewController: UIViewController{
     //MARK: Constants and variables
     let regionRadius: CLLocationDistance = 1000
     var parkingList = [[AnyObject]]()
-    var parkingLocations = [[AnyObject]]()
     
     // MARK: Outlets
     @IBOutlet weak var monumentMap: MKMapView!
@@ -103,17 +102,13 @@ class MapViewController: UIViewController{
                     DispatchQueue.main.async {
                         let array = json["items"] as! [AnyObject]
                         let selection = array[0] as! [String: AnyObject]
-                        //print(selection["lat"]!)
-                        //print(selection["lon"]!)
-                        //print(selection["adres"]!)
-                        //self.parkingLocations.append([selection["lat"]!, selection["lon"]!, selection["adres"]!])
                         
                         let lat = selection["lat"] as! Double
                         let lon = selection["lon"] as! Double
                         
                         
                         let monument = MonumentInfo(objectName: selection["adres"] as! String,
-                                                    objectLocation: selection["stadsdeel"] as! String, discipline: selection["belnummer"] as! String, coordinate: CLLocationCoordinate2DMake(lat, lon), addedByUser: "hungry@person.food")
+                                                    objectLocation: selection["stadsdeel"] as! String, discipline: selection["belnummer"] as! String, coordinate: CLLocationCoordinate2DMake(lat, lon), addedByUser: "info@parking.locations")
                         
                         self.monumentMap.addAnnotation(monument)
                     }
@@ -126,10 +121,6 @@ class MapViewController: UIViewController{
         }
         
     }
-    
-    
-    // MARK: Actions
-
 
 }
 
@@ -147,9 +138,8 @@ extension MapViewController: MKMapViewDelegate {
                 view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.isEnabled = true
                 view.canShowCallout = true
-                view.calloutOffset = CGPoint(x: -5, y: 5)
-                
-                // Not showing info button - why?
+                view.calloutOffset = CGPoint(x: -7, y: 0)
+
                 view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
             }
             return view
@@ -158,8 +148,8 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        if control == view.rightCalloutAccessoryView {
-            print("button tapped")
-        }
+        let location = view.annotation as! MonumentInfo
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        location.mapItem().openInMaps(launchOptions: launchOptions)
     }
 }
