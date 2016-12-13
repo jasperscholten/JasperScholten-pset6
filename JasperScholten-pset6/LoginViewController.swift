@@ -34,13 +34,6 @@ class LoginViewController: UIViewController {
                 self.performSegue(withIdentifier: "LoginToParking", sender: nil)
             }
         }
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // MARK: Actions
@@ -91,6 +84,31 @@ class LoginViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    // MARK: - State Restoration
     
-
+    override func encodeRestorableState(with coder: NSCoder) {
+        if let selectedEmail = emailField.text {
+            coder.encode(selectedEmail, forKey: "selectedEmail")
+        }
+        
+        if let selectedPassword = passwordField.text {
+            coder.encode(selectedPassword, forKey: "selectedPassword")
+        }
+        
+        super.encodeRestorableState(with: coder)
+    }
+    
+    override func decodeRestorableState(with coder: NSCoder) {
+        
+        if let selectedEmail = coder.decodeObject(forKey: "selectedEmail") as? String {
+            emailField.text = selectedEmail
+        }
+        
+        if let selectedPassword = coder.decodeObject(forKey: "selectedPassword") as? String {
+            passwordField.text = selectedPassword
+        }
+        
+        super.decodeRestorableState(with: coder)
+    }
+    
 }
