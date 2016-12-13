@@ -6,6 +6,7 @@
 //  Copyright © 2016 Jasper Scholten. All rights reserved.
 //
 
+// http://stackoverflow.com/questions/27960556/loading-an-overlay-when-running-long-tasks-in-ios
 import Foundation
 import UIKit
 

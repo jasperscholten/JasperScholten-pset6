@@ -19,8 +19,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     let defaults = UserDefaults.standard
     var parkingList = [[AnyObject]]()
     var locationManager: CLLocationManager!
-    let spinner1 = customActivityIndicator(text: "Locaties ophalen")
-    //let spinner2 = customActivityIndicator(text: "Plaatsen op kaart")
+    let spinner = customActivityIndicator(text: "Locaties ophalen")
+    var mapLatitude = ""
+    var mapLongitude = ""
     
     // MARK: Outlets
     @IBOutlet weak var monumentMap: MKMapView!
@@ -30,8 +31,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //self.view.addSubview(self.spinner2)
-        self.view.addSubview(self.spinner1)
+        self.view.addSubview(self.spinner)
         getJson()
         
         var initialLocation = CLLocation(latitude: 52.370216, longitude: 4.895168)
@@ -112,9 +112,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     // MARK: Retrieve json
     
     func getJson() {
-        //let url = URL(string: "http://api.parkshark.nl/psapi/api.jsp?day=5&hr=8&min=30&duration=3&lat=" + self.latitude + "&lon=" + self.longitude + "&methods=cash,pin")
         
-        let url = URL(string: "http://api.parkshark.nl/psapi/api.jsp?day=5&hr=8&min=30&duration=1&lat=52.370216&lon=4.895168&methods=cash,pin")
+        var url = URL(string: "http://api.parkshark.nl/psapi/api.jsp?day=5&hr=8&min=30&duration=3&lat=" + mapLatitude + "&lon=" + mapLongitude + "&methods=cash,pin")
+        
+        if mapLatitude == "0.000000" {
+            url = URL(string: "http://api.parkshark.nl/psapi/api.jsp?day=5&hr=8&min=30&duration=3&lat=52.370216&lon=4.895168&methods=cash,pin")
+        }
+        
         print(url!)
         
         if url == nil {
@@ -137,7 +141,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                     let array = json["results"]! as! [[AnyObject]]
                     self.parkingList = array
                     self.populateMap()
-                    self.spinner1.hide()
+                    self.spinner.hide()
                 }
                 
             }
@@ -149,7 +153,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     func populateMap() {
         
-        for i in 0..<self.parkingList.count {
+        let allAnnotations = self.monumentMap.annotations
+        self.monumentMap.removeAnnotations(allAnnotations)
+
+        for i in 0..<50 {
             
             let meterID = self.parkingList[i][0] as! String
             
@@ -191,9 +198,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             }
             
         }
-        
-        //self.spinner2.hide()
-        
+    
     }
 
 }
@@ -225,5 +230,12 @@ extension MapViewController: MKMapViewDelegate {
         let location = view.annotation as! MonumentInfo
         let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
         location.mapItem().openInMaps(launchOptions: launchOptions)
+    }
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        self.spinner.show()
+        mapLatitude = "\(mapView.centerCoordinate.latitude)"
+        mapLongitude = "\(mapView.centerCoordinate.longitude)"
+        getJson()
     }
 }
