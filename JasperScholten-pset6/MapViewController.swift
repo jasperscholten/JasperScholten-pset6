@@ -165,7 +165,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         var end = 50
         var count = 1
         
-        if 0.01 < latitudeDelta && latitudeDelta <= 0.02 {
+        if latitudeDelta <= 0.01 {
+            start = 0
+            end = 50
+            count = 1
+        } else if 0.01 < latitudeDelta && latitudeDelta <= 0.02 {
             start = 0
             end = 150
             count = 1
