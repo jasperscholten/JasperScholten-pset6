@@ -15,13 +15,15 @@ import CoreLocation
 class MapViewController: UIViewController, CLLocationManagerDelegate {
 
     //MARK: Constants and variables
-    let regionRadius: CLLocationDistance = 1000
+    let regionRadius: CLLocationDistance = 500
     let defaults = UserDefaults.standard
     var parkingList = [[AnyObject]]()
     var locationManager: CLLocationManager!
     let spinner = customActivityIndicator(text: "Locaties ophalen")
     var mapLatitude = ""
     var mapLongitude = ""
+    var latitudeDelta = 0.0
+    var longitudeDelta = 0.0
     
     // MARK: Outlets
     @IBOutlet weak var monumentMap: MKMapView!
@@ -156,7 +158,30 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         let allAnnotations = self.monumentMap.annotations
         self.monumentMap.removeAnnotations(allAnnotations)
 
-        for i in 0..<50 {
+        print(latitudeDelta)
+        print(longitudeDelta)
+        
+        var start = 0
+        var end = 50
+        var count = 1
+        
+        if 0.01 < latitudeDelta && latitudeDelta <= 0.02 {
+            start = 0
+            end = 150
+            count = 1
+        } else if 0.02 < latitudeDelta && latitudeDelta <= 0.05 {
+            start = 0
+            end = 400
+            count = 6
+        } else {
+            start = 0
+            end = self.parkingList.count
+            count = 30
+        }
+        
+        // https://www.weheartswift.com/loops/
+        // used to be for i in 0..<50
+        for i in stride(from: start, to: end, by: count) {
             
             let meterID = self.parkingList[i][0] as! String
             
@@ -236,6 +261,9 @@ extension MapViewController: MKMapViewDelegate {
         self.spinner.show()
         mapLatitude = "\(mapView.centerCoordinate.latitude)"
         mapLongitude = "\(mapView.centerCoordinate.longitude)"
+        latitudeDelta = mapView.region.span.latitudeDelta
+        longitudeDelta = mapView.region.span.longitudeDelta
         getJson()
     }
+
 }
