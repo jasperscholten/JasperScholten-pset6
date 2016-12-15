@@ -14,7 +14,6 @@ class LoginViewController: UIViewController {
 
     // MARK: Constants and variables
     var locationManager: CLLocationManager!
-    //let login = "login"
     let ref = FIRDatabase.database().reference(withPath: "parkingLocations")
     
     // MARK: Outlets
@@ -24,7 +23,14 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        passwordField.isSecureTextEntry = true
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
+        
+        //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+        //tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
         
         locationManager = CLLocationManager()
         locationManager.requestWhenInUseAuthorization()
@@ -34,6 +40,35 @@ class LoginViewController: UIViewController {
                 self.performSegue(withIdentifier: "LoginToParking", sender: nil)
             }
         }
+    }
+    
+    //http://stackoverflow.com/questions/26070242/move-view-with-keyboard-using-swift
+    func keyboardWillShow(notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if view.frame.origin.y == 0{
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+            else {
+                
+            }
+        }
+        
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if view.frame.origin.y != 0 {
+                self.view.frame.origin.y += keyboardSize.height
+            }
+            else {
+                
+            }
+        }
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     // MARK: Actions
@@ -47,11 +82,11 @@ class LoginViewController: UIViewController {
     
     @IBAction func signUpDidTouch(_ sender: Any) {
         
-        let alert = UIAlertController(title: "Register",
-                                      message: "Register",
+        let alert = UIAlertController(title: "Registreren",
+                                      message: "Maak een account aan voor parkeer. Op die manier kan je je favoriete parkeerlocaties onthouden, zodat je deze makkelijk terug kan vinden.",
                                       preferredStyle: .alert)
         
-        let saveAction = UIAlertAction(title: "Save",
+        let saveAction = UIAlertAction(title: "OK",
                                        style: .default) { action in
                                         
                                         let emailFieldAlert = alert.textFields![0]
@@ -66,16 +101,16 @@ class LoginViewController: UIViewController {
                                         }
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel",
+        let cancelAction = UIAlertAction(title: "Annuleren",
                                          style: .default)
         
         alert.addTextField { textEmail in
-            textEmail.placeholder = "Enter your email"
+            textEmail.placeholder = "Emailadres"
         }
         
         alert.addTextField { textPassword in
             textPassword.isSecureTextEntry = true
-            textPassword.placeholder = "Enter your password"
+            textPassword.placeholder = "Wachtwoord"
         }
         
         alert.addAction(saveAction)
