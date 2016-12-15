@@ -412,25 +412,27 @@
                                         <rect key="frame" x="0.0" y="368" width="375" height="184"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" restorationIdentifier="LoginInputStack" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="aSM-wB-XJe">
-                                                <rect key="frame" x="16" y="0.0" width="343" height="68"/>
+                                                <rect key="frame" x="44" y="0.0" width="287" height="68"/>
                                                 <subviews>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="249" restorationIdentifier="LoginInputEmail" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Emailadres" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Cee-6B-Fte">
-                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="287" height="30"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="NK5-uZ-7zp"/>
                                                         </constraints>
                                                         <nil key="textColor"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                                                     </textField>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="LoginInputPassword" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Wachtwoord" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="sKg-Tt-EBJ">
-                                                        <rect key="frame" x="0.0" y="38" width="343" height="30"/>
+                                                        <rect key="frame" x="0.0" y="38" width="287" height="30"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="M4r-YR-0fe"/>
                                                         </constraints>
                                                         <nil key="textColor"/>
-                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                                                     </textField>
                                                 </subviews>
                                             </stackView>
@@ -479,26 +481,16 @@
                                             </stackView>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="aSM-wB-XJe" secondAttribute="trailing" constant="16" id="EeM-kq-LA9"/>
                                             <constraint firstAttribute="trailing" secondItem="i3l-BA-ONq" secondAttribute="trailing" id="Hm0-Nn-1rd"/>
+                                            <constraint firstAttribute="trailing" secondItem="aSM-wB-XJe" secondAttribute="trailing" constant="44" id="MoX-pt-QzG"/>
                                             <constraint firstAttribute="bottom" secondItem="i3l-BA-ONq" secondAttribute="bottom" id="Slf-IK-xWb"/>
                                             <constraint firstItem="i3l-BA-ONq" firstAttribute="leading" secondItem="dca-bx-HFn" secondAttribute="leading" id="g0i-93-9v5"/>
-                                            <constraint firstItem="aSM-wB-XJe" firstAttribute="leading" secondItem="dca-bx-HFn" secondAttribute="leading" constant="16" id="wNV-IL-U7b"/>
+                                            <constraint firstItem="aSM-wB-XJe" firstAttribute="leading" secondItem="dca-bx-HFn" secondAttribute="leading" constant="44" id="g9w-ZU-0ja"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
                                 <variation key="heightClass=compact" axis="horizontal" distribution="fillEqually"/>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JoY-18-viu">
-                                <rect key="frame" x="290" y="77" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Test">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="38s-ja-0dQ" kind="show" id="0GB-5h-Q4N"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.047058823529411764" green="0.37254901960784315" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -525,7 +517,4 @@
         <image name="ParkingCentreBlur" width="1280" height="720"/>
         <image name="locationArrow" width="22" height="22"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="AQO-am-bXG"/>
-    </inferredMetricsTieBreakers>
 </document>

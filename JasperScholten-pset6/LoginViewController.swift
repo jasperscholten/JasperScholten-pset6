@@ -38,6 +38,8 @@ class LoginViewController: UIViewController {
         FIRAuth.auth()!.addStateDidChangeListener() { auth, user in
             if user != nil {
                 self.performSegue(withIdentifier: "LoginToParking", sender: nil)
+                self.emailField.text! = ""
+                self.passwordField.text! = ""
             }
         }
     }
@@ -75,9 +77,13 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginDidTouch(_ sender: Any) {
         FIRAuth.auth()!.signIn(withEmail: emailField.text!,
-                               password: passwordField.text!)
-        emailField.text! = ""
-        passwordField.text! = ""
+                               password: passwordField.text!) { (user, error) in
+                                if error != nil {
+                                    let alert = UIAlertController(title: "Foute invoer", message: "Het emailadres of wachtwoord dat je hebt ingevoerd is incorrect.", preferredStyle: UIAlertControllerStyle.alert)
+                                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                    self.present(alert, animated: true, completion: nil)
+                                }
+        }
     }
     
     @IBAction func signUpDidTouch(_ sender: Any) {
@@ -97,6 +103,10 @@ class LoginViewController: UIViewController {
                                                                     if error == nil {
                                                                         FIRAuth.auth()!.signIn(withEmail: self.emailField.text!,
                                                                         password: self.passwordField.text!)
+                                                                    } else {
+                                                                        let alert = UIAlertController(title: "Foute invoer", message: "Het emailadres of wachtwoord dat je hebt ingevoerd bestaat al of voldoet niet aan de eisen.", preferredStyle: UIAlertControllerStyle.alert)
+                                                                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                                                        self.present(alert, animated: true, completion: nil)
                                                                     }
                                         }
         }
@@ -113,8 +123,8 @@ class LoginViewController: UIViewController {
             textPassword.placeholder = "Wachtwoord"
         }
         
-        alert.addAction(saveAction)
         alert.addAction(cancelAction)
+        alert.addAction(saveAction)
         
         present(alert, animated: true, completion: nil)
     }
