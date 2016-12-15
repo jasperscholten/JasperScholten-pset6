@@ -5,6 +5,7 @@
 //  Created by Jasper Scholten on 06-12-16.
 //  Copyright © 2016 Jasper Scholten. All rights reserved.
 //
+//  All Firebase executions (Firauth) based on Grocr tutorial. [1]
 
 import UIKit
 import CoreLocation
@@ -20,18 +21,21 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
+    
+    // MARK: UIViewController Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Make sure all buttons and inputfields keep visible when the keyboard appears. [2]
         NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
+        // Enable user to dismiss keyboard by tapping outside of it. [3]
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
-        
-        //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
-        //tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
         
+        // Ask user permission to use its current location.
         locationManager = CLLocationManager()
         locationManager.requestWhenInUseAuthorization()
         
@@ -44,34 +48,6 @@ class LoginViewController: UIViewController {
         }
     }
     
-    //http://stackoverflow.com/questions/26070242/move-view-with-keyboard-using-swift
-    func keyboardWillShow(notification: NSNotification) {
-        
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if view.frame.origin.y == 0{
-                self.view.frame.origin.y -= keyboardSize.height
-            }
-            else {
-                
-            }
-        }
-        
-    }
-    
-    func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if view.frame.origin.y != 0 {
-                self.view.frame.origin.y += keyboardSize.height
-            }
-            else {
-                
-            }
-        }
-    }
-    
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
     
     // MARK: Actions
     
@@ -101,6 +77,7 @@ class LoginViewController: UIViewController {
                                         FIRAuth.auth()!.createUser(withEmail: emailFieldAlert.text!,
                                                                    password: passwordFieldAlert.text!) { user, error in
                                                                     if error == nil {
+                                                                        // Automatically login after registering.
                                                                         FIRAuth.auth()!.signIn(withEmail: self.emailField.text!,
                                                                         password: self.passwordField.text!)
                                                                     } else {
@@ -129,7 +106,31 @@ class LoginViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    // MARK: - State Restoration
+    
+    // MARK: Keyboard actions [2, 3]
+    
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if view.frame.origin.y == 0{
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if view.frame.origin.y != 0 {
+                self.view.frame.origin.y += keyboardSize.height
+            }
+        }
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    
+    // MARK: State Restoration [4]
     
     override func encodeRestorableState(with coder: NSCoder) {
         if let selectedEmail = emailField.text {
@@ -157,3 +158,12 @@ class LoginViewController: UIViewController {
     }
     
 }
+
+// MARK: References
+
+/*
+ 1. https://www.raywenderlich.com/139322/firebase-tutorial-getting-started-2
+ 2. http://stackoverflow.com/questions/26070242/move-view-with-keyboard-using-swift
+ 3. http://stackoverflow.com/questions/24126678/close-ios-keyboard-by-touching-anywhere-using-swift
+ 4. https://www.raywenderlich.com/117471/state-restoration-tutorial
+ */

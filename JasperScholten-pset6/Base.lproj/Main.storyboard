@@ -13,7 +13,7 @@
         <!--Parkeren in Amsterdam-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="Home" title="Parkeren in Amsterdam" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="JasperScholten_pset6" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Home" title="Parkeren in Amsterdam" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="NavigationViewController" customModule="JasperScholten_pset6" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -125,7 +125,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Parkeren in Amsterdam" id="lPg-kR-3X7">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="7eI-Zw-WPc">
+                        <barButtonItem key="rightBarButtonItem" id="7eI-Zw-WPc">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" restorationIdentifier="LogoutButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WVd-wQ-uq7">
                                 <rect key="frame" x="276" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -189,7 +189,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="monumentMap" destination="4cu-iv-P0k" id="fa1-wH-riR"/>
+                        <outlet property="parkingMap" destination="4cu-iv-P0k" id="Vkw-4s-I00"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ff7-QK-lsS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -199,7 +199,7 @@
         <!--Parkeeradvies-->
         <scene sceneID="DBk-RU-RVd">
             <objects>
-                <viewController storyboardIdentifier="Parkeeradvies" title="Parkeeradvies" useStoryboardIdentifierAsRestorationIdentifier="YES" id="662-qN-FMY" customClass="MonumentListViewController" customModule="JasperScholten_pset6" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Parkeeradvies" title="Parkeeradvies" useStoryboardIdentifierAsRestorationIdentifier="YES" id="662-qN-FMY" customClass="ParkingAdviceViewController" customModule="JasperScholten_pset6" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="spK-5E-riD"/>
                         <viewControllerLayoutGuide type="bottom" id="iGm-Sc-KWC"/>
@@ -212,21 +212,21 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ParkeeradviesCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="monumentListCell" id="gmq-cj-yvK" customClass="MonumentListCell" customModule="JasperScholten_pset6" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ParkeeradviesCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="adviceListCell" id="gmq-cj-yvK" customClass="AdviceListCell" customModule="JasperScholten_pset6" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="ParkeeradviesContentView" tableViewCell="gmq-cj-yvK" id="CWs-VD-hf3">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="ParkeeradviesLabelAddress" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KWO-ft-0WO">
-                                                    <rect key="frame" x="24" y="34" width="42" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="ParkeeradviesLabelName" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FIg-KN-ydm">
+                                                    <rect key="frame" x="24" y="8" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="ParkeeradviesLabelName" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FIg-KN-ydm">
-                                                    <rect key="frame" x="24" y="8" width="42" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="ParkeeradviesLabelAddress" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KWO-ft-0WO">
+                                                    <rect key="frame" x="24" y="34" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -252,8 +252,8 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="addFavorite" destination="4Px-dx-Pjd" id="eEK-tP-ZG2"/>
-                                            <outlet property="monumentListAdress" destination="KWO-ft-0WO" id="IfQ-IJ-VRz"/>
-                                            <outlet property="monumentListName" destination="FIg-KN-ydm" id="MpF-Ki-1T1"/>
+                                            <outlet property="parkingAdviceAddress" destination="FIg-KN-ydm" id="gCg-5v-5KV"/>
+                                            <outlet property="parkingAdvicePrice" destination="KWO-ft-0WO" id="pmM-8e-Ttz"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -272,7 +272,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="monumentListTableView" destination="dA3-uO-WE0" id="SOw-ho-WoU"/>
+                        <outlet property="parkingAdviceTableView" destination="dA3-uO-WE0" id="cza-Lc-8aq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HjS-IB-KzO" userLabel="First Responder" sceneMemberID="firstResponder"/>

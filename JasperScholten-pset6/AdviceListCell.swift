@@ -1,5 +1,5 @@
 //
-//  MonumentListCell.swift
+//  AdviceCell.swift
 //  JasperScholten-pset6
 //
 //  Created by Jasper Scholten on 08-12-16.
@@ -8,15 +8,11 @@
 
 import UIKit
 
-class MonumentListCell: UITableViewCell {
+class AdviceListCell: UITableViewCell {
 
-
-    
-    @IBOutlet weak var monumentListName: UILabel!
-    @IBOutlet weak var monumentListAdress: UILabel!
+    @IBOutlet weak var parkingAdviceAddress: UILabel!
+    @IBOutlet weak var parkingAdvicePrice: UILabel!
     @IBOutlet weak var addFavorite: UIButton!
-    
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()

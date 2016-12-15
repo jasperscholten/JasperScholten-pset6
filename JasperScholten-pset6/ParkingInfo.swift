@@ -1,5 +1,5 @@
 //
-//  monumentInfo.swift
+//  ParkingInfo.swift
 //  JasperScholten-pset6
 //
 //  Created by Jasper Scholten on 06-12-16.
@@ -11,7 +11,7 @@ import MapKit
 import Firebase
 import Contacts
 
-class MonumentInfo: NSObject, MKAnnotation {
+class ParkingInfo: NSObject, MKAnnotation {
     let objectName: String
     let objectLocation: String
     let discipline: String

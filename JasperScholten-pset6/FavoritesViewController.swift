@@ -12,13 +12,15 @@ import Firebase
 class FavoritesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     // MARK: Constants and variables
-    var locations: [MonumentInfo] = []
+    var locations: [ParkingInfo] = []
     let ref = FIRDatabase.database().reference(withPath: "parkingLocations")
     var user: User!
     
     // MARK: Outlets
     @IBOutlet weak var favoritesTableView: UITableView!
     
+    
+    // MARK: UIViewController Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,10 +33,10 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
 
         ref.observe(.value, with: { snapshot in
     
-            var newLocations: [MonumentInfo] = []
+            var newLocations: [ParkingInfo] = []
             
             for item in snapshot.children {
-                let parkingLocation = MonumentInfo(snapshot: item as! FIRDataSnapshot)
+                let parkingLocation = ParkingInfo(snapshot: item as! FIRDataSnapshot)
                 if parkingLocation.addedByUser == self.user.email{
                     newLocations.append(parkingLocation)
                 }

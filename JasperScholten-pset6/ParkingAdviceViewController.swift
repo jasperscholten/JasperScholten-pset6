@@ -1,5 +1,5 @@
 //
-//  MonumentListViewController.swift
+//  ParkingAdviceViewController.swift
 //  JasperScholten-pset6
 //
 //  Created by Jasper Scholten on 06-12-16.
@@ -12,7 +12,7 @@ import UIKit
 import CoreLocation
 import Firebase
 
-class MonumentListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
+class ParkingAdviceViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
 
     // MARK: Constants and variables
     let ref = FIRDatabase.database().reference(withPath: "parkingLocations")
@@ -24,7 +24,7 @@ class MonumentListViewController: UIViewController, UITableViewDataSource, UITab
     var user: User!
     
     // MARK: Outlets
-    @IBOutlet weak var monumentListTableView: UITableView!
+    @IBOutlet weak var parkingAdviceTableView: UITableView!
     
     // MARK: UIViewController Lifecycle
     override func viewDidLoad() {
@@ -103,7 +103,7 @@ class MonumentListViewController: UIViewController, UITableViewDataSource, UITab
                     self.parkingList = array
                     
                     // http://stackoverflow.com/questions/27797930/swift-how-to-create-a-table-view-based-on-data-downloaded-asynchronously
-                    self.monumentListTableView.reloadData()
+                    self.parkingAdviceTableView.reloadData()
                     self.spinner.hide()
                 }
                 
@@ -122,11 +122,11 @@ class MonumentListViewController: UIViewController, UITableViewDataSource, UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = monumentListTableView.dequeueReusableCell(withIdentifier: "monumentListCell", for: indexPath) as! MonumentListCell
+        let cell = parkingAdviceTableView.dequeueReusableCell(withIdentifier: "adviceListCell", for: indexPath) as! AdviceListCell
         
-        cell.monumentListName.text = (self.parkingList[indexPath.row][3] as! String)
+        cell.parkingAdviceAddress.text = (self.parkingList[indexPath.row][3] as! String)
         let parkingRate = (self.parkingList[indexPath.row][1] as! Float)/3
-        cell.monumentListAdress.text = "€ \(String(format: "%.2f", parkingRate)) per uur"
+        cell.parkingAdvicePrice.text = "€ \(String(format: "%.2f", parkingRate)) per uur"
         
         return cell
         
@@ -137,15 +137,15 @@ class MonumentListViewController: UIViewController, UITableViewDataSource, UITab
     @IBAction func addToFavorites(_ sender: Any) {
         
         // Method to retrieve the indexpath of the cell that the user clicks on. http://stackoverflow.com/questions/39603922/getting-row-of-uitableview-cell-on-button-press-swift-3
-        let switchPos = (sender as AnyObject).convert(CGPoint.zero, to: self.monumentListTableView)
-        let indexPath = self.monumentListTableView.indexPathForRow(at: switchPos)
+        let switchPos = (sender as AnyObject).convert(CGPoint.zero, to: self.parkingAdviceTableView)
+        let indexPath = self.parkingAdviceTableView.indexPathForRow(at: switchPos)
         
         let parkingAdress = self.parkingList[(indexPath?.row)!][3] as! String
         let meterID = self.parkingList[(indexPath?.row)!][0] as! String
         let lat = self.parkingList[(indexPath?.row)!][4] as! Double
         let lon = self.parkingList[(indexPath?.row)!][5] as! Double
         
-        let parkingLocation = MonumentInfo(objectName: parkingAdress,
+        let parkingLocation = ParkingInfo(objectName: parkingAdress,
                                            objectLocation: meterID,
                                            discipline: "\(self.parkingList[(indexPath?.row)!][4]), \(self.parkingList[(indexPath?.row)!][5])",
                                            coordinate: CLLocationCoordinate2DMake(lat, lon),

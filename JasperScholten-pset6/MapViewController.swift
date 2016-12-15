@@ -5,8 +5,7 @@
 //  Created by Jasper Scholten on 06-12-16.
 //  Copyright © 2016 Jasper Scholten. All rights reserved.
 //
-
-// https://www.raywenderlich.com/90971/introduction-mapkit-swift-tutorial
+//  Use of Mapkit primarily based on tutorial by Audrey Tam. [1]
 
 import UIKit
 import MapKit
@@ -15,10 +14,10 @@ import CoreLocation
 class MapViewController: UIViewController, CLLocationManagerDelegate {
 
     //MARK: Constants and variables
-    let regionRadius: CLLocationDistance = 500
-    let defaults = UserDefaults.standard
     var parkingList = [[AnyObject]]()
     var locationManager: CLLocationManager!
+    let defaults = UserDefaults.standard
+    let regionRadius: CLLocationDistance = 500
     let spinner = customActivityIndicator(text: "Locaties ophalen")
     var mapLatitude = ""
     var mapLongitude = ""
@@ -26,13 +25,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     var longitudeDelta = 0.0
     
     // MARK: Outlets
-    @IBOutlet weak var monumentMap: MKMapView!
+    @IBOutlet weak var parkingMap: MKMapView!
     
     
     // MARK: UIViewController Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.view.addSubview(self.spinner)
         getJson()
         
@@ -41,21 +39,21 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         if defaults.double(forKey: "latitude") != 0.0 {
             let latitude = defaults.double(forKey: "latitude")
             let longitude = defaults.double(forKey: "longitude")
-            
             initialLocation = CLLocation(latitude: latitude, longitude: longitude)
         }
-        
+
         centerMapOnLocation(location: initialLocation)
-        
     }
     
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 2.0, regionRadius * 2.0)
-        monumentMap.setRegion(coordinateRegion, animated: true)
+        parkingMap.setRegion(coordinateRegion, animated: true)
     }
+    
     
     // MARK: Actions
     
+    /// Center mapview on default location.
     @IBAction func centerMap(_ sender: Any) {
         var latitude = defaults.double(forKey: "latitude")
         var longitude = defaults.double(forKey: "longitude")
@@ -69,6 +67,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         centerMapOnLocation(location: defaultLocation)
     }
     
+    /// Set current location as new default center of map.
     @IBAction func newDefaultCenter(_ sender: Any) {
         determineMyCurrentLocation()
         
@@ -77,8 +76,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         self.present(alert, animated: true, completion: nil)
     }
     
-    // MARK: Determine user's location
-    // http://swiftdeveloperblog.com/code-examples/determine-users-current-location-example-in-swift/
+    
+    // MARK: Determine user's current location [2]
     
     func determineMyCurrentLocation() {
         locationManager = CLLocationManager()
@@ -102,6 +101,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         let newCenter = CLLocation(latitude: latitude, longitude: longitude)
         centerMapOnLocation(location: newCenter)
         
+        // Save current location for later use, such as centermap.
         defaults.set(latitude, forKey: "latitude")
         defaults.set(longitude, forKey: "longitude")
     }
@@ -111,22 +111,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         print("Error \(error)")
     }
     
-    // MARK: Retrieve json
     
+    // MARK: Retrieve json [3]
     func getJson() {
-        
-        var url = URL(string: "http://api.parkshark.nl/psapi/api.jsp?day=5&hr=8&min=30&duration=3&lat=" + mapLatitude + "&lon=" + mapLongitude + "&methods=cash,pin")
-        
-        if mapLatitude == "0.000000" {
-            url = URL(string: "http://api.parkshark.nl/psapi/api.jsp?day=5&hr=8&min=30&duration=3&lat=52.370216&lon=4.895168&methods=cash,pin")
-        }
-        
-        print(url!)
+        let url = URL(string: "http://api.parkshark.nl/psapi/api.jsp?day=5&hr=8&min=30&duration=3&lat=" + mapLatitude + "&lon=" + mapLongitude + "&methods=cash,pin")
         
         if url == nil {
             print("Empty string")
         } else {
-            
             let task = URLSession.shared.dataTask(with: url!) { data, response, error in
                 guard error == nil else {
                     print(error!)
@@ -139,32 +131,31 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                 
                 let json = try! JSONSerialization.jsonObject(with: data, options: []) as! [String:AnyObject]
                 
+                // Save parkinglocation info in array, then populate map with this data.
                 DispatchQueue.main.async {
                     let array = json["results"]! as! [[AnyObject]]
                     self.parkingList = array
                     self.populateMap()
                     self.spinner.hide()
                 }
-                
             }
-            
             task.resume()
         }
-        
     }
     
+    
+    // MARK: Populate mapview with annotations, based on locations from the retrieved JSON file.
     func populateMap() {
         
-        let allAnnotations = self.monumentMap.annotations
-        self.monumentMap.removeAnnotations(allAnnotations)
-
-        print(latitudeDelta)
-        print(longitudeDelta)
+        // Remove annotations currently populating the map.
+        let allAnnotations = self.parkingMap.annotations
+        self.parkingMap.removeAnnotations(allAnnotations)
         
-        var start = 0
-        var end = 50
-        var count = 1
+        var start = Int()
+        var end = Int()
+        var count = Int()
         
+        // Vary number and way of placing annotations, based on the zoomlevel of the map.
         if latitudeDelta <= 0.01 {
             start = 0
             end = 50
@@ -183,18 +174,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             count = 30
         }
         
-        // https://www.weheartswift.com/loops/
-        // used to be for i in 0..<50
+        // Add a certain amount of annotations to the map, in a way described above. [4]
         for i in stride(from: start, to: end, by: count) {
             
             let meterID = self.parkingList[i][0] as! String
-            
             let url = URL(string: "http://api.parkshark.nl/psapi/api.jsp?action=get_meters&meternumbers=" + meterID)
             
             if url == nil {
                 print("Empty string")
             } else {
-                
                 let task = URLSession.shared.dataTask(with: url!) { data, response, error in
                     guard error == nil else {
                         print(error!)
@@ -210,32 +198,31 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                     DispatchQueue.main.async {
                         let array = json["items"] as! [AnyObject]
                         let selection = array[0] as! [String: AnyObject]
-                        
                         let lat = selection["lat"] as! Double
                         let lon = selection["lon"] as! Double
                         
-                        
-                        let monument = MonumentInfo(objectName: selection["adres"] as! String,
+                        // Bundle relevant data specific to this parkingLocation.
+                        let parkingLocation = ParkingInfo(objectName: selection["adres"] as! String,
                                                     objectLocation: selection["stadsdeel"] as! String, discipline: selection["belnummer"] as! String, coordinate: CLLocationCoordinate2DMake(lat, lon), addedByUser: "info@parking.locations")
                         
-                        self.monumentMap.addAnnotation(monument)
+                        // Add annotation based on and containing the data bundled above.
+                        self.parkingMap.addAnnotation(parkingLocation)
                     }
-                    
                 }
-                
                 task.resume()
             }
-            
         }
-    
     }
-
 }
+
+
+// MARK: Deals with details of populating mapview with annotations.
 
 extension MapViewController: MKMapViewDelegate {
     
+    /// Create reusable annotations.
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if let annotation = annotation as? MonumentInfo {
+        if let annotation = annotation as? ParkingInfo {
             let identifier = "pin"
             var view: MKPinAnnotationView
             if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
@@ -247,7 +234,6 @@ extension MapViewController: MKMapViewDelegate {
                 view.isEnabled = true
                 view.canShowCallout = true
                 view.calloutOffset = CGPoint(x: -7, y: 0)
-
                 view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
             }
             return view
@@ -255,19 +241,32 @@ extension MapViewController: MKMapViewDelegate {
         return nil
     }
     
+    /// Add functionality to the detailbutton on annotation. When this button is tapped, Apple MAps open and shows the route to that location.
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        let location = view.annotation as! MonumentInfo
+        let location = view.annotation as! ParkingInfo
         let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
         location.mapItem().openInMaps(launchOptions: launchOptions)
     }
     
+    /// Repopulate mapview with new set of annotations after user drags the map.
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         self.spinner.show()
         mapLatitude = "\(mapView.centerCoordinate.latitude)"
         mapLongitude = "\(mapView.centerCoordinate.longitude)"
+        
+        // Determine zoomlevel.
         latitudeDelta = mapView.region.span.latitudeDelta
         longitudeDelta = mapView.region.span.longitudeDelta
         getJson()
     }
 
 }
+
+// MARK: References
+
+/*
+ 1. https://www.raywenderlich.com/90971/introduction-mapkit-swift-tutorial
+ 2. http://swiftdeveloperblog.com/code-examples/determine-users-current-location-example-in-swift/
+ 3. http://stackoverflow.com/questions/38292793/http-requests-in-swift-3
+ 4. https://www.weheartswift.com/loops/
+ */

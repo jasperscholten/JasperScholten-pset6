@@ -9,17 +9,17 @@
 /* Begin PBXBuildFile section */
 		75FE5A197DE75F6D573922A1 /* Pods_JasperScholten_pset6.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A859F4F4566B5678BEF52FC0 /* Pods_JasperScholten_pset6.framework */; };
 		A44E36B31DF98941008AD303 /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44E36B21DF98940008AD303 /* FavoritesCell.swift */; };
-		A44E36B51DF98990008AD303 /* MonumentListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44E36B41DF98990008AD303 /* MonumentListCell.swift */; };
+		A44E36B51DF98990008AD303 /* AdviceListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44E36B41DF98990008AD303 /* AdviceListCell.swift */; };
 		A44E36B91DFB6441008AD303 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44E36B81DFB6441008AD303 /* User.swift */; };
 		A44E36D31DFF5B2D008AD303 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44E36D21DFF5B2D008AD303 /* ActivityIndicator.swift */; };
 		A44FBD1A1DF6E4B60019BACF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A44FBD191DF6E4B60019BACF /* GoogleService-Info.plist */; };
 		A46EF6901DF6F6BB00A90453 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46EF68F1DF6F6BB00A90453 /* LoginViewController.swift */; };
 		A46EF6921DF6FA2B00A90453 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46EF6911DF6FA2B00A90453 /* MapViewController.swift */; };
-		A46EF6941DF6FAD900A90453 /* MonumentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46EF6931DF6FAD900A90453 /* MonumentListViewController.swift */; };
+		A46EF6941DF6FAD900A90453 /* ParkingAdviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46EF6931DF6FAD900A90453 /* ParkingAdviceViewController.swift */; };
 		A46EF6961DF6FB0400A90453 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46EF6951DF6FB0400A90453 /* FavoritesViewController.swift */; };
-		A46EF6981DF701D600A90453 /* monumentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46EF6971DF701D600A90453 /* monumentInfo.swift */; };
+		A46EF6981DF701D600A90453 /* ParkingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46EF6971DF701D600A90453 /* ParkingInfo.swift */; };
 		A4EDAD3C1DF6DC6800694948 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EDAD3B1DF6DC6800694948 /* AppDelegate.swift */; };
-		A4EDAD3E1DF6DC6800694948 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EDAD3D1DF6DC6800694948 /* ViewController.swift */; };
+		A4EDAD3E1DF6DC6800694948 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EDAD3D1DF6DC6800694948 /* NavigationViewController.swift */; };
 		A4EDAD411DF6DC6800694948 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4EDAD3F1DF6DC6800694948 /* Main.storyboard */; };
 		A4EDAD431DF6DC6800694948 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4EDAD421DF6DC6800694948 /* Assets.xcassets */; };
 		A4EDAD461DF6DC6800694948 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4EDAD441DF6DC6800694948 /* LaunchScreen.storyboard */; };
@@ -28,19 +28,19 @@
 /* Begin PBXFileReference section */
 		5C25664F703BD9284322BA37 /* Pods-JasperScholten-pset6.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JasperScholten-pset6.release.xcconfig"; path = "Pods/Target Support Files/Pods-JasperScholten-pset6/Pods-JasperScholten-pset6.release.xcconfig"; sourceTree = "<group>"; };
 		A44E36B21DF98940008AD303 /* FavoritesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
-		A44E36B41DF98990008AD303 /* MonumentListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonumentListCell.swift; sourceTree = "<group>"; };
+		A44E36B41DF98990008AD303 /* AdviceListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdviceListCell.swift; sourceTree = "<group>"; };
 		A44E36B81DFB6441008AD303 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A44E36D21DFF5B2D008AD303 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		A44FBD191DF6E4B60019BACF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A46EF68C1DF6F1F900A90453 /* JasperScholten-pset6.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "JasperScholten-pset6.entitlements"; sourceTree = "<group>"; };
 		A46EF68F1DF6F6BB00A90453 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A46EF6911DF6FA2B00A90453 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		A46EF6931DF6FAD900A90453 /* MonumentListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonumentListViewController.swift; sourceTree = "<group>"; };
+		A46EF6931DF6FAD900A90453 /* ParkingAdviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingAdviceViewController.swift; sourceTree = "<group>"; };
 		A46EF6951DF6FB0400A90453 /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
-		A46EF6971DF701D600A90453 /* monumentInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = monumentInfo.swift; sourceTree = "<group>"; };
+		A46EF6971DF701D600A90453 /* ParkingInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingInfo.swift; sourceTree = "<group>"; };
 		A4EDAD381DF6DC6800694948 /* JasperScholten-pset6.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JasperScholten-pset6.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4EDAD3B1DF6DC6800694948 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A4EDAD3D1DF6DC6800694948 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A4EDAD3D1DF6DC6800694948 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		A4EDAD401DF6DC6800694948 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A4EDAD421DF6DC6800694948 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A4EDAD451DF6DC6800694948 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -70,6 +70,57 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		A42370B01E03269C0006F310 /* Viewcontrollers */ = {
+			isa = PBXGroup;
+			children = (
+				A46EF68F1DF6F6BB00A90453 /* LoginViewController.swift */,
+				A4EDAD3D1DF6DC6800694948 /* NavigationViewController.swift */,
+				A46EF6911DF6FA2B00A90453 /* MapViewController.swift */,
+				A46EF6931DF6FAD900A90453 /* ParkingAdviceViewController.swift */,
+				A46EF6951DF6FB0400A90453 /* FavoritesViewController.swift */,
+			);
+			name = Viewcontrollers;
+			sourceTree = "<group>";
+		};
+		A42370B11E0326DD0006F310 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A44E36B81DFB6441008AD303 /* User.swift */,
+				A46EF6971DF701D600A90453 /* ParkingInfo.swift */,
+				A44E36D21DFF5B2D008AD303 /* ActivityIndicator.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		A42370B21E03272E0006F310 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A44E36B21DF98940008AD303 /* FavoritesCell.swift */,
+				A44E36B41DF98990008AD303 /* AdviceListCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		A42370B31E03274C0006F310 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				A4EDAD3F1DF6DC6800694948 /* Main.storyboard */,
+				A4EDAD441DF6DC6800694948 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		A42370B41E03277D0006F310 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				A4EDAD3B1DF6DC6800694948 /* AppDelegate.swift */,
+				A46EF68C1DF6F1F900A90453 /* JasperScholten-pset6.entitlements */,
+				A4EDAD471DF6DC6800694948 /* Info.plist */,
+				A44FBD191DF6E4B60019BACF /* GoogleService-Info.plist */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
 		A4EDAD2F1DF6DC6800694948 = {
 			isa = PBXGroup;
 			children = (
@@ -91,23 +142,12 @@
 		A4EDAD3A1DF6DC6800694948 /* JasperScholten-pset6 */ = {
 			isa = PBXGroup;
 			children = (
-				A46EF68C1DF6F1F900A90453 /* JasperScholten-pset6.entitlements */,
-				A46EF68F1DF6F6BB00A90453 /* LoginViewController.swift */,
-				A46EF6911DF6FA2B00A90453 /* MapViewController.swift */,
-				A46EF6931DF6FAD900A90453 /* MonumentListViewController.swift */,
-				A46EF6951DF6FB0400A90453 /* FavoritesViewController.swift */,
-				A46EF6971DF701D600A90453 /* monumentInfo.swift */,
-				A44E36B81DFB6441008AD303 /* User.swift */,
-				A44E36D21DFF5B2D008AD303 /* ActivityIndicator.swift */,
-				A44E36B21DF98940008AD303 /* FavoritesCell.swift */,
-				A44E36B41DF98990008AD303 /* MonumentListCell.swift */,
-				A4EDAD3B1DF6DC6800694948 /* AppDelegate.swift */,
-				A4EDAD3F1DF6DC6800694948 /* Main.storyboard */,
+				A42370B01E03269C0006F310 /* Viewcontrollers */,
+				A42370B11E0326DD0006F310 /* Models */,
+				A42370B21E03272E0006F310 /* Cells */,
+				A42370B31E03274C0006F310 /* Storyboards */,
+				A42370B41E03277D0006F310 /* Other */,
 				A4EDAD421DF6DC6800694948 /* Assets.xcassets */,
-				A4EDAD441DF6DC6800694948 /* LaunchScreen.storyboard */,
-				A4EDAD471DF6DC6800694948 /* Info.plist */,
-				A44FBD191DF6E4B60019BACF /* GoogleService-Info.plist */,
-				A4EDAD3D1DF6DC6800694948 /* ViewController.swift */,
 			);
 			path = "JasperScholten-pset6";
 			sourceTree = "<group>";
@@ -251,16 +291,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				A46EF6901DF6F6BB00A90453 /* LoginViewController.swift in Sources */,
-				A44E36B51DF98990008AD303 /* MonumentListCell.swift in Sources */,
+				A44E36B51DF98990008AD303 /* AdviceListCell.swift in Sources */,
 				A44E36B31DF98941008AD303 /* FavoritesCell.swift in Sources */,
-				A4EDAD3E1DF6DC6800694948 /* ViewController.swift in Sources */,
+				A4EDAD3E1DF6DC6800694948 /* NavigationViewController.swift in Sources */,
 				A4EDAD3C1DF6DC6800694948 /* AppDelegate.swift in Sources */,
 				A44E36D31DFF5B2D008AD303 /* ActivityIndicator.swift in Sources */,
 				A46EF6921DF6FA2B00A90453 /* MapViewController.swift in Sources */,
 				A46EF6961DF6FB0400A90453 /* FavoritesViewController.swift in Sources */,
-				A46EF6981DF701D600A90453 /* monumentInfo.swift in Sources */,
+				A46EF6981DF701D600A90453 /* ParkingInfo.swift in Sources */,
 				A44E36B91DFB6441008AD303 /* User.swift in Sources */,
-				A46EF6941DF6FAD900A90453 /* MonumentListViewController.swift in Sources */,
+				A46EF6941DF6FAD900A90453 /* ParkingAdviceViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
