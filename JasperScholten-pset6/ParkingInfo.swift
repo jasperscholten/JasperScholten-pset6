@@ -46,7 +46,7 @@ class ParkingInfo: NSObject, MKAnnotation {
     init(snapshot: FIRDataSnapshot) {
         self.key = snapshot.key
         let snapshotValue = snapshot.value as! [String: AnyObject]
-        self.objectAddress = snapshotValue["objectName"] as! String
+        self.objectAddress = snapshotValue["objectAddress"] as! String
         self.objectLocation = snapshotValue["objectLocation"] as! String
         self.discipline = snapshotValue["coordinate"] as! String
         self.addedByUser = snapshotValue["addedByUser"] as? String ?? ""
