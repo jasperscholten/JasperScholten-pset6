@@ -33,6 +33,6 @@ After several tests with different layouts of all views, different ways of using
 <img src="https://github.com/jasperscholten/JasperScholten-pset6/blob/master/doc/8_LoadingAdvice.PNG" width="250">
 <img src="https://github.com/jasperscholten/JasperScholten-pset6/blob/master/doc/9_AdviceTableView.PNG" width="250">
 <img src="https://github.com/jasperscholten/JasperScholten-pset6/blob/master/doc/10_FavoritesTableView.PNG" width="250"></br>
-*From left to right: (4) Loading advice, (5) Tableview of advice, based on current location (6) Tableview with favorite parking locations.*
+*From left to right: (7) Loading advice, (8) Tableview of advice, based on current location (9) Tableview with favorite parking locations.*
 
 *&copy; 2016 Jasper Scholten, 11157887*
