@@ -24,33 +24,29 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Determine current user and save in variable user
         user = User(uid: "FakeId", email: "location@parking.com")
-        
         FIRAuth.auth()!.addStateDidChangeListener { auth, user in
             guard let user = user else { return }
             self.user = User(authData: user)
         }
 
+        // Retrieve favorites data from Firebase.
         ref.observe(.value, with: { snapshot in
-    
             var newLocations: [ParkingInfo] = []
-            
             for item in snapshot.children {
                 let parkingLocation = ParkingInfo(snapshot: item as! FIRDataSnapshot)
                 if parkingLocation.addedByUser == self.user.email{
                     newLocations.append(parkingLocation)
                 }
             }
-            
             self.locations = newLocations
             self.favoritesTableView.reloadData()
         })
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
+    
+    // MARK: Populate tableView with favorites.
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return locations.count
@@ -60,8 +56,8 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         let cell = favoritesTableView.dequeueReusableCell(withIdentifier: "favoritesCell", for: indexPath) as! FavoritesCell
         let parkingLocation = self.locations[indexPath.row]
         
-        cell.favoriteName.text = parkingLocation.objectName
-        cell.favoriteAdress.text = "Favoriet van \(parkingLocation.addedByUser)"
+        cell.favoriteAdress.text = parkingLocation.objectAddress
+        cell.favoriteName.text = "Favoriet van \(parkingLocation.addedByUser)"
         
         return cell
     }
@@ -72,6 +68,4 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             parkingLocation.ref?.removeValue()
         }
     }
-    
-
 }

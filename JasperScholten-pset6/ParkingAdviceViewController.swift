@@ -5,8 +5,7 @@
 //  Created by Jasper Scholten on 06-12-16.
 //  Copyright © 2016 Jasper Scholten. All rights reserved.
 //
-
-// http://api.parkshark.nl/jsonapi.html
+//  Parkshark API used for data, returns parkinglocations in Amsterdam and their characteristics. [1]
 
 import UIKit
 import CoreLocation
@@ -16,9 +15,9 @@ class ParkingAdviceViewController: UIViewController, UITableViewDataSource, UITa
 
     // MARK: Constants and variables
     let ref = FIRDatabase.database().reference(withPath: "parkingLocations")
-    let spinner = customActivityIndicator(text: "Advies laden")
     var parkingList = [[AnyObject]]()
     var locationManager: CLLocationManager!
+    let spinner = customActivityIndicator(text: "Advies laden")
     var latitude: String = ""
     var longitude: String = ""
     var user: User!
@@ -26,16 +25,15 @@ class ParkingAdviceViewController: UIViewController, UITableViewDataSource, UITa
     // MARK: Outlets
     @IBOutlet weak var parkingAdviceTableView: UITableView!
     
+    
     // MARK: UIViewController Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.view.addSubview(self.spinner)
-        
         self.determineMyCurrentLocation()
         
+        // Determine current user and save in variable user.
         user = User(uid: "FakeId", email: "location@parking.com")
-        
         FIRAuth.auth()!.addStateDidChangeListener { auth, user in
             guard let user = user else { return }
             self.user = User(authData: user)
@@ -43,9 +41,7 @@ class ParkingAdviceViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     
-    // MARK: Determine user's location
-    // http://swiftdeveloperblog.com/code-examples/determine-users-current-location-example-in-swift/
-    
+    // MARK: Determine user's location [2]
     func determineMyCurrentLocation() {
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -54,21 +50,16 @@ class ParkingAdviceViewController: UIViewController, UITableViewDataSource, UITa
         if CLLocationManager.locationServicesEnabled() {
             locationManager.startUpdatingLocation()
         }
-        
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation:CLLocation = locations[0] as CLLocation
-        
         self.latitude = String(format:"%f", userLocation.coordinate.latitude)
         self.longitude = String(format:"%f", userLocation.coordinate.longitude)
         
         manager.stopUpdatingLocation()
         
         self.getJson()
-        
-        print("user latitude = \(self.latitude)")
-        print("user longitude = \(self.longitude)")
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
@@ -76,16 +67,14 @@ class ParkingAdviceViewController: UIViewController, UITableViewDataSource, UITa
         print("Error \(error)")
     }
     
-    // MARK: Retrieve json
     
+    // MARK: Retrieve json [3]
     func getJson() {
         let url = URL(string: "http://api.parkshark.nl/psapi/api.jsp?day=5&hr=8&min=30&duration=3&lat=" + self.latitude + "&lon=" + self.longitude + "&methods=cash,pin")
-        print(url!)
         
         if url == nil {
             print("Empty string")
         } else {
-            
             let task = URLSession.shared.dataTask(with: url!) { data, response, error in
                 guard error == nil else {
                     print(error!)
@@ -95,26 +84,27 @@ class ParkingAdviceViewController: UIViewController, UITableViewDataSource, UITa
                     print("Data is empty")
                     return
                 }
+                let httpResponse = response as! HTTPURLResponse
+                guard httpResponse.statusCode == 200 else {
+                    print("Statuscode \(httpResponse.statusCode)")
+                    return
+                }
                 
                 let json = try! JSONSerialization.jsonObject(with: data, options: []) as! [String:AnyObject]
                 
+                // Save parkingadvice in parkinglistarray and reload table when data is fully loaded. [4]
                 DispatchQueue.main.async {
-                    let array = json["advice"]! as! [[AnyObject]]
-                    self.parkingList = array
-                    
-                    // http://stackoverflow.com/questions/27797930/swift-how-to-create-a-table-view-based-on-data-downloaded-asynchronously
+                    self.parkingList = json["advice"]! as! [[AnyObject]]
                     self.parkingAdviceTableView.reloadData()
                     self.spinner.hide()
                 }
-                
             }
-            
             task.resume()
         }
     }
     
     
-    // MARK: Populate tableView
+    // MARK: Populate tableView with parkingadvice
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return parkingList.count
@@ -136,7 +126,7 @@ class ParkingAdviceViewController: UIViewController, UITableViewDataSource, UITa
     
     @IBAction func addToFavorites(_ sender: Any) {
         
-        // Method to retrieve the indexpath of the cell that the user clicks on. http://stackoverflow.com/questions/39603922/getting-row-of-uitableview-cell-on-button-press-swift-3
+        // Retrieve the indexpath of the cell that the user clicks on. [5]
         let switchPos = (sender as AnyObject).convert(CGPoint.zero, to: self.parkingAdviceTableView)
         let indexPath = self.parkingAdviceTableView.indexPathForRow(at: switchPos)
         
@@ -145,12 +135,13 @@ class ParkingAdviceViewController: UIViewController, UITableViewDataSource, UITa
         let lat = self.parkingList[(indexPath?.row)!][4] as! Double
         let lon = self.parkingList[(indexPath?.row)!][5] as! Double
         
-        let parkingLocation = ParkingInfo(objectName: parkingAdress,
+        let parkingLocation = ParkingInfo(objectAddress: parkingAdress,
                                            objectLocation: meterID,
                                            discipline: "\(self.parkingList[(indexPath?.row)!][4]), \(self.parkingList[(indexPath?.row)!][5])",
                                            coordinate: CLLocationCoordinate2DMake(lat, lon),
                                            addedByUser: self.user.email )
 
+        // Save parking location in Firebase, with meternumber as ID
         let parkingLocationRef = self.ref.child(meterID)
         parkingLocationRef.setValue(parkingLocation.toAnyObject())
         
@@ -160,3 +151,13 @@ class ParkingAdviceViewController: UIViewController, UITableViewDataSource, UITa
     }
 
 }
+
+// MARK: References
+
+/*
+ 1. http://api.parkshark.nl/jsonapi.html
+ 2. http://swiftdeveloperblog.com/code-examples/determine-users-current-location-example-in-swift/
+ 3. http://stackoverflow.com/questions/38292793/http-requests-in-swift-3
+ 4. http://stackoverflow.com/questions/27797930/swift-how-to-create-a-table-view-based-on-data-downloaded-asynchronously
+ 5. http://stackoverflow.com/questions/39603922/getting-row-of-uitableview-cell-on-button-press-swift-3
+ */

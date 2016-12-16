@@ -6,6 +6,7 @@
 //  Copyright © 2016 Jasper Scholten. All rights reserved.
 //
 //  Use of Mapkit primarily based on tutorial by Audrey Tam. [1]
+//  Parkshark API used for data, returns parkinglocations in Amsterdam and their characteristics. [2]
 
 import UIKit
 import MapKit
@@ -77,7 +78,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     
-    // MARK: Determine user's current location [2]
+    // MARK: Determine user's current location [3]
     
     func determineMyCurrentLocation() {
         locationManager = CLLocationManager()
@@ -112,7 +113,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     
-    // MARK: Retrieve json [3]
+    // MARK: Retrieve json [4]
     func getJson() {
         let url = URL(string: "http://api.parkshark.nl/psapi/api.jsp?day=5&hr=8&min=30&duration=3&lat=" + mapLatitude + "&lon=" + mapLongitude + "&methods=cash,pin")
         
@@ -126,6 +127,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                 }
                 guard let data = data else {
                     print("Data is empty")
+                    return
+                }
+                let httpResponse = response as! HTTPURLResponse
+                guard httpResponse.statusCode == 200 else {
+                    print("Statuscode \(httpResponse.statusCode)")
                     return
                 }
                 
@@ -174,7 +180,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             count = 30
         }
         
-        // Add a certain amount of annotations to the map, in a way described above. [4]
+        // Add a certain amount of annotations to the map, in a way described above. [5]
         for i in stride(from: start, to: end, by: count) {
             
             let meterID = self.parkingList[i][0] as! String
@@ -202,7 +208,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                         let lon = selection["lon"] as! Double
                         
                         // Bundle relevant data specific to this parkingLocation.
-                        let parkingLocation = ParkingInfo(objectName: selection["adres"] as! String,
+                        let parkingLocation = ParkingInfo(objectAddress: selection["adres"] as! String,
                                                     objectLocation: selection["stadsdeel"] as! String, discipline: selection["belnummer"] as! String, coordinate: CLLocationCoordinate2DMake(lat, lon), addedByUser: "info@parking.locations")
                         
                         // Add annotation based on and containing the data bundled above.
@@ -266,7 +272,8 @@ extension MapViewController: MKMapViewDelegate {
 
 /*
  1. https://www.raywenderlich.com/90971/introduction-mapkit-swift-tutorial
- 2. http://swiftdeveloperblog.com/code-examples/determine-users-current-location-example-in-swift/
- 3. http://stackoverflow.com/questions/38292793/http-requests-in-swift-3
- 4. https://www.weheartswift.com/loops/
+ 2. http://api.parkshark.nl/jsonapi.html
+ 3. http://swiftdeveloperblog.com/code-examples/determine-users-current-location-example-in-swift/
+ 4. http://stackoverflow.com/questions/38292793/http-requests-in-swift-3
+ 5. https://www.weheartswift.com/loops/
  */

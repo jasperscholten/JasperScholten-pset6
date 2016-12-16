@@ -12,7 +12,7 @@ import Firebase
 import Contacts
 
 class ParkingInfo: NSObject, MKAnnotation {
-    let objectName: String
+    let objectAddress: String
     let objectLocation: String
     let discipline: String
     let coordinate: CLLocationCoordinate2D
@@ -20,8 +20,8 @@ class ParkingInfo: NSObject, MKAnnotation {
     let key: String
     let ref: FIRDatabaseReference?
     
-    init(objectName: String, objectLocation: String, discipline: String, coordinate: CLLocationCoordinate2D, addedByUser: String, key: String = "") {
-        self.objectName = objectName
+    init(objectAddress: String, objectLocation: String, discipline: String, coordinate: CLLocationCoordinate2D, addedByUser: String, key: String = "") {
+        self.objectAddress = objectAddress
         self.objectLocation = objectLocation
         self.discipline = discipline
         self.coordinate = coordinate
@@ -33,7 +33,7 @@ class ParkingInfo: NSObject, MKAnnotation {
     }
     
     var title: String? {
-        return objectName
+        return objectAddress
     }
     
     var subtitle: String? {
@@ -43,7 +43,7 @@ class ParkingInfo: NSObject, MKAnnotation {
     init(snapshot: FIRDataSnapshot) {
         self.key = snapshot.key
         let snapshotValue = snapshot.value as! [String: AnyObject]
-        self.objectName = snapshotValue["objectName"] as! String
+        self.objectAddress = snapshotValue["objectName"] as! String
         self.objectLocation = snapshotValue["objectLocation"] as! String
         self.discipline = snapshotValue["coordinate"] as! String
         self.addedByUser = snapshotValue["addedByUser"] as? String ?? ""
@@ -53,7 +53,7 @@ class ParkingInfo: NSObject, MKAnnotation {
     
     func toAnyObject() -> Any {
         return [
-            "objectName": objectName,
+            "objectAddress": objectAddress,
             "objectLocation": objectLocation,
             "coordinate": discipline,
             "addedByUser": addedByUser

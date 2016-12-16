@@ -303,23 +303,23 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="FavoritesLabelName" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKC-79-rOe">
-                                                    <rect key="frame" x="24" y="8" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="24" y="39.5" width="35.5" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="FavoritesLabelAddress" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbV-iz-SHk">
-                                                    <rect key="frame" x="24" y="34" width="42" height="21"/>
+                                                    <rect key="frame" x="24" y="8" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="BKC-79-rOe" firstAttribute="top" secondItem="n9G-df-Y1Y" secondAttribute="topMargin" id="FCk-h9-rvn"/>
-                                                <constraint firstItem="lbV-iz-SHk" firstAttribute="top" secondItem="BKC-79-rOe" secondAttribute="bottom" constant="5" id="VaY-e6-P7M"/>
-                                                <constraint firstItem="lbV-iz-SHk" firstAttribute="leading" secondItem="n9G-df-Y1Y" secondAttribute="leading" constant="24" id="hCb-M8-6Ub"/>
-                                                <constraint firstItem="BKC-79-rOe" firstAttribute="leading" secondItem="n9G-df-Y1Y" secondAttribute="leadingMargin" constant="16" id="pz4-dM-SUS"/>
+                                                <constraint firstItem="lbV-iz-SHk" firstAttribute="top" secondItem="n9G-df-Y1Y" secondAttribute="topMargin" id="2Xg-hg-D4p"/>
+                                                <constraint firstItem="BKC-79-rOe" firstAttribute="bottom" secondItem="n9G-df-Y1Y" secondAttribute="bottomMargin" constant="5" id="FNn-0D-e3b"/>
+                                                <constraint firstItem="BKC-79-rOe" firstAttribute="leading" secondItem="n9G-df-Y1Y" secondAttribute="leadingMargin" constant="16" id="Inp-V7-7RP"/>
+                                                <constraint firstItem="lbV-iz-SHk" firstAttribute="leading" secondItem="n9G-df-Y1Y" secondAttribute="leadingMargin" constant="16" id="XOA-ry-w2f"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
