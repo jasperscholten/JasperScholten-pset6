@@ -5,8 +5,8 @@
 //  Created by Jasper Scholten on 12-12-16.
 //  Copyright © 2016 Jasper Scholten. All rights reserved.
 //
+//  This class defines the properties of the activity indicators used throughout the app. To use, first initialise an indicator with a constant (let spinner = customActivityIndicator(text: "Locaties ophalen")) and a statement in viewdidload (self.view.addSubview(self.spinner)). Subsequently, alter the behavior and appearance of this indicator thorugh the functions 'show' and 'hide'. Adapted from a post on Stackoverflow. [1]
 
-// http://stackoverflow.com/questions/27960556/loading-an-overlay-when-running-long-tasks-in-ios
 import Foundation
 import UIKit
 
@@ -81,3 +81,10 @@ class customActivityIndicator: UIVisualEffectView {
         self.isHidden = true
     }
 }
+
+// MARK: References
+
+/*
+ 1. http://stackoverflow.com/questions/27960556/loading-an-overlay-when-running-long-tasks-in-ios
+ */
+

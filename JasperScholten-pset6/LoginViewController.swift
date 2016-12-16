@@ -81,7 +81,7 @@ class LoginViewController: UIViewController {
                                                                         FIRAuth.auth()!.signIn(withEmail: self.emailField.text!,
                                                                         password: self.passwordField.text!)
                                                                     } else {
-                                                                        let alert = UIAlertController(title: "Foute invoer", message: "Het emailadres of wachtwoord dat je hebt ingevoerd bestaat al of voldoet niet aan de eisen.", preferredStyle: UIAlertControllerStyle.alert)
+                                                                        let alert = UIAlertController(title: "Foute invoer", message: "Het emailadres of wachtwoord dat je hebt ingevoerd bestaat al of voldoet niet aan de eisen. Een wachtwoord moet bestaan uit minmaal 6 karakters.", preferredStyle: UIAlertControllerStyle.alert)
                                                                         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                                                                         self.present(alert, animated: true, completion: nil)
                                                                     }
