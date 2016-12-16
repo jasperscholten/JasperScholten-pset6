@@ -5,7 +5,7 @@
 //  Created by Jasper Scholten on 06-12-16.
 //  Copyright © 2016 Jasper Scholten. All rights reserved.
 //
-//  Parkshark API used for data, returns parkinglocations in Amsterdam and their characteristics. [1]
+//  This ViewController shows the parkingadvice given by the Parkshark API in a tableview.[1] This advice is based on the current location of the user (determineMyCurrentLocation()). In the tableView, a specific location could be added to FireBase as a favorite location using the 'addToFavorites' action.
 
 import UIKit
 import CoreLocation
@@ -25,7 +25,6 @@ class ParkingAdviceViewController: UIViewController, UITableViewDataSource, UITa
     // MARK: Outlets
     @IBOutlet weak var parkingAdviceTableView: UITableView!
     
-    
     // MARK: UIViewController Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +38,6 @@ class ParkingAdviceViewController: UIViewController, UITableViewDataSource, UITa
             self.user = User(authData: user)
         }
     }
-    
     
     // MARK: Determine user's location [2]
     func determineMyCurrentLocation() {
@@ -66,7 +64,6 @@ class ParkingAdviceViewController: UIViewController, UITableViewDataSource, UITa
     {
         print("Error \(error)")
     }
-    
     
     // MARK: Retrieve json [3]
     func getJson() {
@@ -102,7 +99,6 @@ class ParkingAdviceViewController: UIViewController, UITableViewDataSource, UITa
             task.resume()
         }
     }
-    
     
     // MARK: Populate tableView with parkingadvice
     

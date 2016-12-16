@@ -5,6 +5,7 @@
 //  Created by Jasper Scholten on 06-12-16.
 //  Copyright © 2016 Jasper Scholten. All rights reserved.
 //
+//  This viewcontroller shows a tableview of the favorite parkinglocations of the user currently logged in. These favorites are retrieved from Firebase.
 
 import UIKit
 import Firebase
@@ -18,7 +19,6 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     
     // MARK: Outlets
     @IBOutlet weak var favoritesTableView: UITableView!
-    
     
     // MARK: UIViewController Lifecycle
     override func viewDidLoad() {
@@ -44,7 +44,6 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             self.favoritesTableView.reloadData()
         })
     }
-    
     
     // MARK: Populate tableView with favorites.
     

@@ -5,8 +5,7 @@
 //  Created by Jasper Scholten on 06-12-16.
 //  Copyright © 2016 Jasper Scholten. All rights reserved.
 //
-//  Use of Mapkit primarily based on tutorial by Audrey Tam. [1]
-//  Parkshark API used for data, returns parkinglocations in Amsterdam and their characteristics. [2]
+//  All functionality of the mapview can be found in this file. The use of Mapkit is primarily based on a tutorial by Audrey Tam. [1] The mapview shows a map on which annotations are placed for each parkinglocation in Amsterdam, based on the Parkshark API. [2] The number of parkinglocations depends on the zoomlevel of the map, which makes sure that not all annotations (over 2000) always show, substantially slowing down performance. The center of the map is initialised on a default location (UserDefaults). This location can be changed, and retrieved/used through two buttons linked to the 'actions' section in this file. Lastly, an extension deals with details of populating mapview with annotations.
 
 import UIKit
 import MapKit
@@ -27,7 +26,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: Outlets
     @IBOutlet weak var parkingMap: MKMapView!
-    
     
     // MARK: UIViewController Lifecycle
     override func viewDidLoad() {
@@ -50,7 +48,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 2.0, regionRadius * 2.0)
         parkingMap.setRegion(coordinateRegion, animated: true)
     }
-    
     
     // MARK: Actions
     
@@ -76,7 +73,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-    
     
     // MARK: Determine user's current location [3]
     
@@ -111,7 +107,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     {
         print("Error \(error)")
     }
-    
     
     // MARK: Retrieve json [4]
     func getJson() {
@@ -148,7 +143,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             task.resume()
         }
     }
-    
     
     // MARK: Populate mapview with annotations, based on locations from the retrieved JSON file.
     func populateMap() {
@@ -221,9 +215,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     }
 }
 
-
 // MARK: Deals with details of populating mapview with annotations.
-
 extension MapViewController: MKMapViewDelegate {
     
     /// Create reusable annotations.

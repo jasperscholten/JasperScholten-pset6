@@ -5,7 +5,7 @@
 //  Created by Jasper Scholten on 06-12-16.
 //  Copyright © 2016 Jasper Scholten. All rights reserved.
 //
-//  All Firebase executions (Firauth) based on Grocr tutorial. [1]
+//  This viewcontroller deals with logging (loginDidTouch) in and/or signing in (signInDidTouch) a (new) user. On first launch, the user is also asked to allow locationservices. All Firebase executions (Firauth) based on Grocr tutorial. [1]
 
 import UIKit
 import CoreLocation
@@ -20,7 +20,6 @@ class LoginViewController: UIViewController {
     // MARK: Outlets
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
-    
     
     // MARK: UIViewController Lifecycle
     
@@ -47,7 +46,6 @@ class LoginViewController: UIViewController {
             }
         }
     }
-    
     
     // MARK: Actions
     
@@ -106,7 +104,6 @@ class LoginViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    
     // MARK: Keyboard actions [2, 3]
     
     func keyboardWillShow(notification: NSNotification) {
@@ -129,34 +126,21 @@ class LoginViewController: UIViewController {
         view.endEditing(true)
     }
     
-    
     // MARK: State Restoration [4]
-    
+    // Password not saved because of security reasons.
     override func encodeRestorableState(with coder: NSCoder) {
         if let selectedEmail = emailField.text {
             coder.encode(selectedEmail, forKey: "selectedEmail")
         }
-        
-        if let selectedPassword = passwordField.text {
-            coder.encode(selectedPassword, forKey: "selectedPassword")
-        }
-        
         super.encodeRestorableState(with: coder)
     }
     
     override func decodeRestorableState(with coder: NSCoder) {
-        
         if let selectedEmail = coder.decodeObject(forKey: "selectedEmail") as? String {
             emailField.text = selectedEmail
         }
-        
-        if let selectedPassword = coder.decodeObject(forKey: "selectedPassword") as? String {
-            passwordField.text = selectedPassword
-        }
-        
         super.decodeRestorableState(with: coder)
     }
-    
 }
 
 // MARK: References
