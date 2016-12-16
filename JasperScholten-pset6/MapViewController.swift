@@ -68,10 +68,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     /// Set current location as new default center of map.
     @IBAction func newDefaultCenter(_ sender: Any) {
         determineMyCurrentLocation()
-        
-        let alert = UIAlertController(title: "Centreer kaart", message: "Je hebt je huidige locatie ingesteld als nieuwe centrum van de kaart.", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        alert(title: "Centreer kaart", message: "Je hebt je huidige locatie ingesteld als nieuwe centrum van de kaart.")
     }
     
     // MARK: Determine user's current location [3]
@@ -113,20 +110,20 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         let url = URL(string: "http://api.parkshark.nl/psapi/api.jsp?day=5&hr=8&min=30&duration=3&lat=" + mapLatitude + "&lon=" + mapLongitude + "&methods=cash,pin")
         
         if url == nil {
-            print("Empty string")
+            self.alert(title: "Oeps! Er is iets mis gegaan.", message: "Er is een fout opgetreden bij het verzoek aan de server (url fout).")
         } else {
             let task = URLSession.shared.dataTask(with: url!) { data, response, error in
                 guard error == nil else {
-                    print(error!)
+                    self.alert(title: "Oeps! Er is iets mis gegaan.", message: "Error: \(error as! String)")
                     return
                 }
                 guard let data = data else {
-                    print("Data is empty")
+                    self.alert(title: "Oeps! Er is iets mis gegaan.", message: "Het verzoek aan de server heeft geen data opgeleverd.")
                     return
                 }
                 let httpResponse = response as! HTTPURLResponse
                 guard httpResponse.statusCode == 200 else {
-                    print("Statuscode \(httpResponse.statusCode)")
+                    self.alert(title: "Oeps! Er is iets mis gegaan.", message: "Statuscode: \(httpResponse.statusCode)")
                     return
                 }
                 
@@ -176,20 +173,24 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         // Add a certain amount of annotations to the map, in a way described above. [5]
         for i in stride(from: start, to: end, by: count) {
-            
             let meterID = self.parkingList[i][0] as! String
             let url = URL(string: "http://api.parkshark.nl/psapi/api.jsp?action=get_meters&meternumbers=" + meterID)
             
             if url == nil {
-                print("Empty string")
+                self.alert(title: "Oeps! Er is iets mis gegaan.", message: "Er is een fout opgetreden bij het verzoek aan de server (url fout).")
             } else {
                 let task = URLSession.shared.dataTask(with: url!) { data, response, error in
                     guard error == nil else {
-                        print(error!)
+                        self.alert(title: "Oeps! Er is iets mis gegaan.", message: "Error: \(error as! String)")
                         return
                     }
                     guard let data = data else {
-                        print("Data is empty")
+                        self.alert(title: "Oeps! Er is iets mis gegaan.", message: "Het verzoek aan de server heeft geen data opgeleverd.")
+                        return
+                    }
+                    let httpResponse = response as! HTTPURLResponse
+                    guard httpResponse.statusCode == 200 else {
+                        self.alert(title: "Oeps! Er is iets mis gegaan.", message: "Statuscode: \(httpResponse.statusCode)")
                         return
                     }
                     
@@ -212,6 +213,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                 task.resume()
             }
         }
+    }
+    
+    // General alert function. [6]
+    func alert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
@@ -257,7 +265,6 @@ extension MapViewController: MKMapViewDelegate {
         longitudeDelta = mapView.region.span.longitudeDelta
         getJson()
     }
-
 }
 
 // MARK: References
@@ -268,4 +275,5 @@ extension MapViewController: MKMapViewDelegate {
  3. http://swiftdeveloperblog.com/code-examples/determine-users-current-location-example-in-swift/
  4. http://stackoverflow.com/questions/38292793/http-requests-in-swift-3
  5. https://www.weheartswift.com/loops/
+ 6. http://stackoverflow.com/questions/24022479/how-would-i-create-a-uialertview-in-swift
  */

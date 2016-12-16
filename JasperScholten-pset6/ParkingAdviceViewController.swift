@@ -70,20 +70,20 @@ class ParkingAdviceViewController: UIViewController, UITableViewDataSource, UITa
         let url = URL(string: "http://api.parkshark.nl/psapi/api.jsp?day=5&hr=8&min=30&duration=3&lat=" + self.latitude + "&lon=" + self.longitude + "&methods=cash,pin")
         
         if url == nil {
-            print("Empty string")
+            self.alert(title: "Oeps! Er is iets mis gegaan.", message: "Er is een fout opgetreden bij het verzoek aan de server (url fout).")
         } else {
             let task = URLSession.shared.dataTask(with: url!) { data, response, error in
                 guard error == nil else {
-                    print(error!)
+                    self.alert(title: "Oeps! Er is iets mis gegaan.", message: "Error: \(error as! String)")
                     return
                 }
                 guard let data = data else {
-                    print("Data is empty")
+                    self.alert(title: "Oeps! Er is iets mis gegaan.", message: "Het verzoek aan de server heeft geen data opgeleverd.")
                     return
                 }
                 let httpResponse = response as! HTTPURLResponse
                 guard httpResponse.statusCode == 200 else {
-                    print("Statuscode \(httpResponse.statusCode)")
+                    self.alert(title: "Oeps! Er is iets mis gegaan.", message: "Statuscode: \(httpResponse.statusCode)")
                     return
                 }
                 
@@ -115,7 +115,6 @@ class ParkingAdviceViewController: UIViewController, UITableViewDataSource, UITa
         cell.parkingAdvicePrice.text = "€ \(String(format: "%.2f", parkingRate)) per uur"
         
         return cell
-        
     }
     
     // MARK: Actions
@@ -141,11 +140,15 @@ class ParkingAdviceViewController: UIViewController, UITableViewDataSource, UITa
         let parkingLocationRef = self.ref.child(meterID)
         parkingLocationRef.setValue(parkingLocation.toAnyObject())
         
-        let alert = UIAlertController(title: "Toegevoegd aan favorieten", message: "Je hebt \(parkingAdress) toegevoegd aan je favoriete parkeerlocaties.", preferredStyle: UIAlertControllerStyle.alert)
+        alert(title: "Toegevoegd aan favorieten", message: "Je hebt \(parkingAdress) toegevoegd aan je favoriete parkeerlocaties.")
+    }
+    
+    // General alert function. [6]
+    func alert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-
 }
 
 // MARK: References
@@ -156,4 +159,5 @@ class ParkingAdviceViewController: UIViewController, UITableViewDataSource, UITa
  3. http://stackoverflow.com/questions/38292793/http-requests-in-swift-3
  4. http://stackoverflow.com/questions/27797930/swift-how-to-create-a-table-view-based-on-data-downloaded-asynchronously
  5. http://stackoverflow.com/questions/39603922/getting-row-of-uitableview-cell-on-button-press-swift-3
+ 6. http://stackoverflow.com/questions/24022479/how-would-i-create-a-uialertview-in-swift
  */
